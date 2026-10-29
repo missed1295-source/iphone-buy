@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Купи айфон</title>
+<style>
+:root{--bg:#070a10;--panel:#111722;--panel2:#182131;--line:#273246;--text:#f5f7fb;--muted:#8d9ab0;--green:#55e58b;--blue:#5aa9ff;--purple:#a777ff;--red:#ff646f;--gold:#ffd66b;--cyan:#51e4ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% 0%,#17233a 0,#080b11 34%),#080b11;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}.app{max-width:1220px;margin:auto;min-height:100vh;background:linear-gradient(180deg,#0b1019,#090c12)}
+button,input{font:inherit}button{cursor:pointer}.top{height:70px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;background:#0b1019e8;backdrop-filter:blur(18px)}.brand{font-size:19px;font-weight:950;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:600;margin-top:2px}.wallet{font-weight:950;color:var(--green);font-size:16px}.levelchip{display:inline-flex;gap:6px;align-items:center;background:#1a2638;border:1px solid #30425e;padding:6px 9px;border-radius:10px;color:#d8e4f8;font-size:11px;margin-right:8px}
+nav{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:9px;border-bottom:1px solid var(--line);position:sticky;top:70px;z-index:29;background:#0b1019f5;backdrop-filter:blur(16px)}nav button{border:1px solid transparent;background:#121a27;color:#91a0b5;border-radius:12px;padding:8px 3px;font-size:10px;font-weight:750}nav button.active{background:#f3f6fb;color:#0a0d13;border-color:#fff}.notif{position:relative}.dot{position:absolute;right:7px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 10px #ff646f}
+main{padding:17px}.view{display:none}.view.active{display:block}h1{font-size:27px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);margin-bottom:17px}.hero{border:1px solid #30415a;background:linear-gradient(115deg,#17243a,#111827 55%,#152d29);border-radius:20px;padding:17px;margin-bottom:15px;position:relative;overflow:hidden}.hero:after{content:'₽';position:absolute;right:15px;top:-25px;font-size:140px;font-weight:1000;color:#ffffff05;transform:rotate(-12deg)}.hero b{font-size:21px}.hero span{color:#b8c6da}.hero .green{color:var(--green)}
+.toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.filter{background:#121a27;border:1px solid var(--line);color:#b8c4d5;border-radius:10px;padding:8px 11px;font-size:11px}.filter.active{background:#24354d;color:#fff;border-color:#47668f}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(180deg,#121a26,#0f151f);border:1px solid var(--line);border-radius:18px;padding:11px;overflow:hidden;box-shadow:0 12px 30px #0005}.phonebox{height:180px;border-radius:14px;background:radial-gradient(circle at 50% 25%,#31445f,#141b26 65%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.phonebox:before{content:'';position:absolute;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle,#5aa9ff16,transparent 67%);filter:blur(2px)}.phoneart{width:104px;height:168px;position:relative;filter:drop-shadow(0 24px 22px #000d);transform:rotate(-2deg);transition:.25s}.phoneart:after{content:"";position:absolute;inset:3px;border-radius:24px;box-shadow:inset 0 0 0 1px #ffffff24,inset 0 -8px 18px #0005;pointer-events:none}.phoneedge{position:absolute;inset:-2px;border-radius:24px;border:2px solid #ffffff18;pointer-events:none}.sidebtn{position:absolute;right:-4px;top:39px;width:3px;height:24px;border-radius:3px;background:#cbd3dc55;box-shadow:0 30px 0 #cbd3dc44}.logoMark{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);font-size:8px;font-weight:900;color:#ffffff75;letter-spacing:1px}.wallpaper{position:absolute;inset:0;background:radial-gradient(circle at 72% 18%,#ffffff22,transparent 22%),radial-gradient(circle at 20% 80%,var(--glow,#5aa9ff33),transparent 38%),linear-gradient(145deg,#17243b,#06090e 58%,#18283b);}.appdot{position:absolute;width:8px;height:8px;border-radius:3px;background:#ffffff30;box-shadow:13px 0 #ffffff24,26px 0 #ffffff18;left:14px;bottom:18px}.time{position:absolute;top:15px;left:12px;font-size:7px;color:#fff9;font-weight:800}.caseGlow{position:absolute;inset:-6px;border-radius:29px;border:4px solid transparent;pointer-events:none;opacity:.8}.card:hover .phoneart{transform:rotate(0) translateY(-3px) scale(1.035)}.phonebody{position:absolute;inset:0;border-radius:22px;border:3px solid #080a0e;background:linear-gradient(145deg,var(--p1),var(--p2));box-shadow:inset 2px 2px 5px #fff5,inset -5px -8px 12px #0008}.phonescreen{position:absolute;inset:6px;border-radius:18px;background:#05080d;overflow:hidden;box-shadow:inset 0 0 18px #000}.phonescreen:after{content:'';position:absolute;width:70px;height:150px;left:-25px;top:-10px;background:linear-gradient(100deg,#fff0,#ffffff28,#fff0);transform:rotate(22deg)}.notch{position:absolute;z-index:2;top:6px;left:50%;transform:translateX(-50%);width:28px;height:8px;border-radius:0 0 8px 8px;background:#020407}.camblock{position:absolute;z-index:3;left:7px;top:7px;width:35px;height:46px;border-radius:10px;background:linear-gradient(145deg,#1c222b,#05070b);border:1px solid #ffffff13;box-shadow:0 3px 5px #0008}.lens{position:absolute;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9bc7ff,#13233d 38%,#020409 70%);border:1px solid #596579}.l1{left:5px;top:5px}.l2{right:5px;top:5px}.l3{left:5px;bottom:5px}.l4{right:5px;bottom:5px}.quadcam .l1,.quadcam .l2,.quadcam .l3,.quadcam .l4{width:9px;height:9px}.triCam .l4{display:none}.flash{position:absolute;right:5px;bottom:7px;width:5px;height:5px;border-radius:50%;background:#f8e7b0}.singlecam .camblock{width:25px;height:25px}.quadcam .lens{width:9px;height:9px}.triCam .camblock{width:34px;height:44px}.singlecam .l1{left:6px;top:6px}.singlecam .l2,.singlecam .l3,.singlecam .flash{display:none}
+.phonebody{overflow:visible}
+.phonebody:before{content:"";position:absolute;inset:0;border-radius:22px;background:linear-gradient(120deg,#ffffff22 0%,transparent 18%,transparent 62%,#ffffff12 100%);pointer-events:none;mix-blend-mode:screen}
+.phonebody:after{content:"";position:absolute;left:7px;right:7px;top:5px;height:18px;border-radius:15px;background:linear-gradient(90deg,#ffffff18,transparent,#ffffff10);filter:blur(1px);pointer-events:none}
+.camblock{transition:.2s;}
+.camblock.apple{width:43px;height:50px;border-radius:13px;background:linear-gradient(145deg,#303640,#080a0e);box-shadow:0 5px 10px #0009,inset 0 1px 1px #fff2}
+.camblock.samsung{width:37px;height:62px;border-radius:14px;background:linear-gradient(145deg,#222831,#080a0e);box-shadow:0 5px 10px #0009}
+.camblock.xiaomi{width:45px;height:45px;border-radius:50%;background:radial-gradient(circle,#252b35,#07090d 68%);box-shadow:0 5px 10px #0009}
+.camblock.pixel{width:58px;height:20px;border-radius:9px;background:linear-gradient(180deg,#303742,#0a0c10);top:10px;left:50%;transform:translateX(-50%)}
+.camblock.honor{width:39px;height:48px;border-radius:50%;background:radial-gradient(circle,#303844,#07090d 70%);box-shadow:0 5px 10px #0009}
+.camblock.realme{width:39px;height:49px;border-radius:13px;background:linear-gradient(145deg,#27302c,#070a09)}
+.lens{box-shadow:inset 0 0 3px #fff3,0 0 2px #000}
+.camera-ring{position:absolute;border:2px solid #ffffff22;border-radius:50%;inset:-2px}
+.speaker{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);width:20px;height:2px;border-radius:2px;background:#ffffff35;z-index:3}
+.screenicons{position:absolute;right:9px;bottom:15px;display:flex;gap:4px}.screenicons i{width:8px;height:8px;border-radius:3px;background:#ffffff28;box-shadow:0 0 6px #ffffff12}
+
+.inspect-shell{background:#0b1019;border:1px solid #2d3a4f;border-radius:20px;padding:10px;box-shadow:0 20px 60px #0009}
+.inspect-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}.inspect-title{font-size:16px;font-weight:950}.inspect-time{background:#202a3a;border:1px solid #35435a;padding:6px 10px;border-radius:12px;font-weight:900;color:#dce8f7}
+.inspect-tabs{display:grid;grid-template-columns:1fr 1fr;background:#202633;border-radius:14px;padding:4px;margin-bottom:10px}.inspect-tabs button{border:0;background:transparent;color:#9ca9bd;padding:10px;border-radius:11px;font-weight:900}.inspect-tabs button.active{background:#fff;color:#10131a}
+.inspect-stage{min-height:410px;border-radius:18px;background:radial-gradient(circle at 50% 22%,#263b56,#101722 55%,#0b1018);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.inspect-stage:after{content:'';position:absolute;inset:auto 10% 8%;height:40px;background:#0008;border-radius:50%;filter:blur(15px)}
+.inspect-phone{width:190px;height:350px;position:relative;filter:drop-shadow(0 25px 20px #000c);z-index:2;transform:rotate(-1deg)}
+.inspect-body{position:absolute;inset:0;border-radius:38px;border:4px solid #c7b995;background:linear-gradient(145deg,var(--p1),var(--p2));box-shadow:inset 4px 4px 9px #fff5,inset -12px -16px 20px #0007,0 0 0 2px #ffffff18}
+.inspect-front .inspect-body{background:#101318}.inspect-screen{position:absolute;inset:9px;border-radius:31px;background:linear-gradient(145deg,#ff9969,#d93677 48%,#40258e);overflow:hidden}.inspect-screen:before{content:'';position:absolute;inset:-20% 20% 35% -25%;background:linear-gradient(110deg,#fff0,#ffffff3a,#fff0);transform:rotate(23deg)}.inspect-notch{position:absolute;z-index:3;top:9px;left:50%;transform:translateX(-50%);width:75px;height:20px;border-radius:0 0 17px 17px;background:#050609}.inspect-home{position:absolute;z-index:3;bottom:9px;left:50%;transform:translateX(-50%);width:55px;height:5px;border-radius:5px;background:#fff}
+.inspect-back .inspect-body{background:linear-gradient(145deg,var(--p1),var(--p2))}.inspect-cam{position:absolute;left:13px;top:13px;width:76px;height:92px;border-radius:23px;background:linear-gradient(145deg,#ddd3b6,#b9ad8d);box-shadow:inset 0 1px 2px #fff8,0 6px 12px #0005}.inspect-cam .ilens{position:absolute;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#a9caff,#182441 35%,#02040a 72%);border:3px solid #343a45;box-shadow:inset 0 0 4px #fff5}.inspect-cam .a{left:8px;top:8px}.inspect-cam .b{right:8px;top:8px}.inspect-cam .c{left:8px;bottom:8px}.inspect-flash{position:absolute;right:10px;bottom:10px;width:11px;height:11px;border-radius:50%;background:#fff8d5;box-shadow:0 0 8px #fff3}
+.inspect-logo{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:20px;font-weight:950;letter-spacing:2px;color:#ffffff55}.inspect-side{position:absolute;right:-6px;top:76px;width:6px;height:48px;border-radius:4px;background:#d8d0bd;box-shadow:0 62px 0 #d8d0bd}.inspect-port{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:45px;height:6px;border-radius:5px;background:#17191d}.inspect-speakers{position:absolute;bottom:1px;left:25%;width:14px;height:3px;border-radius:4px;background:#333;box-shadow:42px 0 #333}
+.inspect-spot{position:absolute;z-index:5;width:34px;height:34px;border:2px solid #ffffff20;background:#ffffff03;border-radius:50%;padding:0;color:transparent;box-shadow:0 0 0 5px #ffffff03}.inspect-spot:active{transform:scale(.92)}.inspect-spot.found{border-color:#55e58b;background:#55e58b22;box-shadow:0 0 16px #55e58b55;color:#55e58b}.inspect-spot.wrong{animation:spotshake .18s 2;border-color:#ff646f}@keyframes spotshake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.inspect-clue{position:absolute;z-index:4;pointer-events:none;border-radius:8px}.clue-scratch{width:30px;height:3px;background:#ffffff55;transform:rotate(-18deg);box-shadow:0 4px #ffffff22}.clue-glitch{width:18px;height:6px;background:#ffffff99;filter:blur(.4px);box-shadow:0 8px #ff646f66}.clue-camera{width:7px;height:7px;border-radius:50%;background:#ff646f99;box-shadow:0 0 10px #ff646f88}
+.inspect-hint{font-size:11px;color:#9eacbf;text-align:center;padding:10px 5px 3px}.inspect-progress{display:flex;gap:5px;justify-content:center;margin:7px 0}.inspect-dot{width:9px;height:9px;border-radius:50%;background:#293547}.inspect-dot.done{background:#55e58b;box-shadow:0 0 9px #55e58b88}.inspect-result{background:#121c29;border:1px solid #314258;border-radius:15px;padding:12px;margin-top:10px}.inspect-result b{font-size:14px}.inspect-result .foundline{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid #243044;font-size:11px}.inspect-result .foundline:last-child{border-bottom:0}
+@media(max-width:560px){.inspect-stage{min-height:390px}.inspect-phone{transform:scale(.9) rotate(-1deg)}.inspect-shell{padding:8px}}
+.repair-game{background:radial-gradient(circle at 50% 0%,#17304a,#0b1018 55%);border:1px solid #34506d;border-radius:18px;padding:14px}.repair-hud{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px}.repair-parts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.partbtn{border:1px solid #314157;background:#121c2a;color:#eaf1fb;border-radius:13px;padding:13px 8px;text-align:left}.partbtn b{display:block;font-size:12px}.partbtn small{display:block;color:#8190a5;margin-top:3px}.partbtn.correct{border-color:#55e58b;background:#143222}.partbtn.wrong{border-color:#ff646f;background:#3a1c24;animation:shake .2s 2}@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.timing{height:18px;border-radius:20px;background:#202a38;position:relative;overflow:hidden;margin:12px 0}.timing .goodzone{position:absolute;left:38%;width:24%;top:0;bottom:0;background:#55e58b44;border-left:1px solid #55e58b;border-right:1px solid #55e58b}.timing .needle{position:absolute;top:2px;bottom:2px;width:4px;border-radius:3px;background:#fff;left:0;box-shadow:0 0 10px #fff;transform:translateX(-2px)}
+.bolts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.bolt{border:1px solid #34445b;background:#151f2e;color:#dbe7f5;border-radius:12px;padding:12px;font-weight:900}.bolt.done{background:#163728;border-color:#55e58b;color:#55e58b}.repair-score{font-size:12px;color:#a9bad0;text-align:center;margin:8px 0}.rarity{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border-radius:8px;font-size:9px;font-weight:900;background:#1b2636;color:#d8e4f5}
+.oldphone{filter:drop-shadow(0 15px 13px #000b);transform:scale(.9)}.oldphone .phonebody{border-radius:14px}.oldphone .phonescreen{border-radius:9px;background:linear-gradient(145deg,#4c5664,#171b22)}.oldphone .notch{display:none}.oldphone .camblock{display:none}.spec{display:flex;justify-content:space-between;gap:8px;align-items:center}.name{font-weight:900;font-size:14px;margin-top:10px}.meta{font-size:11px;color:var(--muted);margin-top:3px}.price{font-size:19px;font-weight:950;margin-top:8px}.profit{font-size:11px;color:var(--green);margin-top:2px}.urgent{color:var(--red)!important}.tag{padding:4px 7px;border-radius:7px;background:#202b3c;color:#cdd8e7;font-size:9px;font-weight:800}.row{display:flex;gap:7px}.row button{flex:1;border:0;border-radius:10px;padding:10px 7px;font-weight:900;margin-top:9px}.buy{background:var(--green);color:#06120a}.write{background:#2a3548;color:#fff}.inspect{width:100%;margin-top:7px}.action{border:1px solid #35435a;border-radius:10px;padding:9px 11px;background:#202b3b;color:#fff;font-weight:800}.primary{background:var(--green);color:#06120a;border-color:transparent}.blue{background:var(--blue);color:#07101d;border-color:transparent}.danger{background:#392028;color:#ffb5bc;border-color:#62323b}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#111824;border:1px solid var(--line);border-radius:15px;padding:13px}.stat span{font-size:10px;color:var(--muted)}.stat b{display:block;font-size:19px;margin-top:4px}.panel{background:#111824;border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:11px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:8px}.item{display:flex;align-items:center;gap:10px;justify-content:space-between;background:#151e2c;border:1px solid #263349;border-radius:13px;padding:11px;margin-top:8px}.item b{font-size:13px}.item small{display:block;color:var(--muted);margin-top:3px;font-size:10px}.miniart{width:40px;height:58px;border-radius:10px;flex:none;position:relative;background:linear-gradient(145deg,#51627b,#111722);border:2px solid #080b10;box-shadow:0 7px 12px #0007}.miniart:before{content:'';position:absolute;inset:3px;border-radius:7px;background:linear-gradient(150deg,#253d59,#070b10)}.badge{padding:5px 8px;border-radius:8px;background:#202b3a;font-size:9px;color:#c7d1df}.good{color:var(--green)}.warn{color:var(--gold)}.bad{color:var(--red)}.muted{color:var(--muted)}.progress{height:8px;background:#27303f;border-radius:20px;overflow:hidden;margin-top:9px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--cyan));width:0}.barline{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px}
+.messages{height:285px;overflow:auto;background:#090e16;border-radius:14px;padding:10px;border:1px solid #202a39}.msg{max-width:85%;padding:9px 11px;border-radius:12px;background:#263143;margin:6px 0;font-size:12px}.msg.me{margin-left:auto;background:#23503a}.field{width:100%;padding:12px;border-radius:10px;border:1px solid #334056;background:#090e16;color:#fff;margin:9px 0}.notice{background:#1a2433;border-left:3px solid var(--blue);padding:10px;border-radius:9px;color:#cbd5e4;font-size:11px}.empty{text-align:center;color:var(--muted);padding:38px 12px;background:#0f151f;border:1px dashed #2b3648;border-radius:15px}.modal{position:fixed;inset:0;background:#000c;display:none;align-items:flex-end;justify-content:center;z-index:100}.modal.open{display:flex}.sheet{width:min(660px,100%);max-height:92vh;overflow:auto;background:#111824;border:1px solid #344158;border-radius:23px 23px 0 0;padding:18px;box-shadow:0 -20px 80px #000}.sheet h2{margin:0 0 10px}.close{float:right;background:none;border:0;color:#94a0b3;font-size:25px}.listgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.achievement{display:flex;gap:10px;align-items:center;background:#151f2d;border:1px solid #2a374c;border-radius:13px;padding:10px}.achievement .ico{font-size:23px}.event{border:1px solid #5b3e20;background:linear-gradient(120deg,#2c2418,#151a22);border-radius:16px;padding:14px;margin-bottom:12px}.event b{color:var(--gold)}.casegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}.casecard{background:#151f2d;border:1px solid #29374d;border-radius:13px;padding:10px}.casevisual{height:62px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#ffffff12,transparent 65%),#0b111a;margin-bottom:7px}.casephone{width:28px;height:48px;border-radius:8px;border:2px solid #0a0d12;box-shadow:0 7px 12px #0008}.taxbox{border:1px solid #60474a;background:linear-gradient(120deg,#291b22,#171923);border-radius:14px;padding:12px;margin-top:10px}.store{display:grid;grid-template-columns:1fr 1fr;gap:10px}.storebox{background:#151f2d;border:1px solid #29374d;border-radius:14px;padding:13px}.storebox h3{margin:0 0 4px;font-size:14px}.smallbtn{width:100%;margin-top:8px}
+@media(min-width:760px){main{padding:23px}.grid{grid-template-columns:repeat(3,1fr)}.phonebox{height:190px}}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}nav button{font-size:8px}.grid{gap:8px}.phonebox{height:145px}.phoneart{transform:scale(.82) rotate(-2deg)}.card:hover .phoneart{transform:scale(.84)}.listgrid,.store{grid-template-columns:1fr}}
+.detail-hero{background:#151c28;border-radius:18px;overflow:hidden;border:1px solid #29364b}.detail-stage{height:360px;background:radial-gradient(circle at 50% 35%,#303b4d,#10151d 70%);display:flex;align-items:center;justify-content:center;position:relative}.detail-stage .phoneart{transform:scale(1.55) rotate(-2deg)}.detail-info{padding:14px}.detail-price{font-size:27px;font-weight:950;margin:4px 0}.detail-specs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.detail-spec{background:#101722;border:1px solid #263247;border-radius:10px;padding:9px}.detail-spec span{display:block;color:#8491a5;font-size:10px}.detail-spec b{display:block;margin-top:3px}.gallery-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:9px;background:#101722}.gallery-tabs button{border:0;background:#202b3b;color:#cdd8e7;border-radius:10px;padding:9px;font-weight:800}.gallery-tabs button.active{background:#fff;color:#0b1017}.detail-actions{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:7px;margin-top:10px}.quick-replies{display:flex;gap:6px;overflow:auto;padding:7px 0}.quick-replies button{white-space:nowrap;border:1px solid #314056;background:#182233;color:#dce6f4;border-radius:18px;padding:8px 10px;font-size:10px}.bottom-nav{position:fixed!important;left:0;right:0;bottom:0;top:auto!important;max-width:1220px;margin:auto;padding:7px 8px!important;grid-template-columns:repeat(8,1fr)!important;border-top:1px solid #2b374b!important;border-bottom:0!important;box-shadow:0 -12px 35px #0008;z-index:80!important}.bottom-nav button{min-height:52px}.bottom-nav button.active{background:#f3f6fb;color:#0a0d13}.app main{padding-bottom:105px}.inspect-stage{touch-action:manipulation}.side-phone{width:82px;height:260px;border-radius:22px;background:linear-gradient(145deg,var(--p1),var(--p2));border:5px solid #080a0d;box-shadow:0 25px 35px #000b;position:relative}.side-phone:before,.side-phone:after{content:'';position:absolute;width:4px;height:34px;border-radius:4px;background:#c9d0d855;left:-8px}.side-phone:before{top:65px}.side-phone:after{top:108px}.delivery-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:12px 0}.delivery-tabs button{border:1px solid #2c394e;background:#121a27;color:#aebbd0;border-radius:12px;padding:11px;font-weight:900}.delivery-tabs button.active{background:#fff;color:#0b1017}.profit-big{font-size:16px;font-weight:950;color:var(--green)}.phone-list-card{display:flex;gap:12px;align-items:center;background:#151e2b;border:1px solid #28364a;border-radius:16px;padding:10px;margin-top:9px}.phone-list-card .list-art{width:72px;height:88px;display:flex;align-items:center;justify-content:center;background:#0d131d;border-radius:12px;overflow:hidden}.phone-list-card .list-art .phoneart{transform:scale(.53)}.phone-list-card .list-art .miniart{transform:scale(1.15)}
+@media(max-width:560px){.bottom-nav{gap:3px}.bottom-nav button{font-size:8px;padding:5px 2px}.detail-stage{height:335px}.detail-stage .phoneart{transform:scale(1.38) rotate(-2deg)}.detail-actions{grid-template-columns:1fr 1fr 1.2fr}.app main{padding-bottom:100px}}
+
+.city-chip{border:1px solid #31415a;background:#182334;color:#dce8f8;border-radius:11px;padding:7px 9px;font-size:10px;font-weight:900;white-space:nowrap}.city-chip:active{transform:scale(.97)}.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.city-card{background:#151f2d;border:1px solid #29374d;border-radius:15px;padding:12px}.city-card.active{border-color:#55e58b;box-shadow:0 0 0 1px #55e58b22}.city-card b{font-size:14px}.city-price{font-size:12px;margin-top:6px;color:#cbd8e8}.city-card small{display:block;color:#8795a9;margin-top:4px}.travel-cost{color:#ffd66b;font-weight:900}@media(max-width:560px){.city-chip{font-size:9px;padding:7px 8px}.brand small{display:none}.city-grid{grid-template-columns:1fr 1fr}}
+
+/* v20 firmware + root game */
+.fw-panel{background:radial-gradient(circle at 50% 0%,#172f4a,#0b1018 58%);border:1px solid #34506d;border-radius:18px;padding:14px}.fw-hud{display:flex;justify-content:space-between;gap:8px;align-items:center}.fw-chip{padding:5px 8px;border-radius:8px;background:#1b293b;color:#dbe8f7;font-size:10px;font-weight:900}.fw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.fw-key{border:1px solid #34475f;background:#121d2b;color:#f3f7fc;border-radius:13px;padding:14px 8px;font-weight:900;min-height:70px}.fw-key.good{border-color:#55e58b;background:#143526}.fw-key.bad{border-color:#ff646f;background:#3b1e27}.fw-progress{height:9px;background:#263344;border-radius:20px;overflow:hidden;margin:10px 0}.fw-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5aa9ff,#51e4ff)}.root-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.root-node{border:1px solid #394b63;background:#141e2c;color:#edf4fc;border-radius:13px;padding:13px;font-weight:900;min-height:64px}.root-node.on{border-color:#a777ff;background:#2a2042;box-shadow:0 0 18px #a777ff22}.soft-note{background:#182333;border:1px solid #2e4058;color:#aebdd0;border-radius:12px;padding:10px;font-size:11px;margin-top:10px}.tech-badge{display:inline-flex;gap:5px;align-items:center;padding:5px 8px;border-radius:8px;background:#202b3a;color:#dbe7f4;font-size:9px;font-weight:900;margin:3px 3px 0 0}.tech-badge.root{background:#2a2042;color:#d6baff}.tech-badge.fw{background:#17304a;color:#9bd8ff}
+@media(max-width:560px){.fw-grid{grid-template-columns:1fr 1fr}.root-grid{grid-template-columns:1fr 1fr}.fw-key{min-height:62px;padding:12px 6px}}
+</style>
+<style id="ux-v11">
+:root{--navh:74px}
+html,body{overscroll-behavior-y:none}
+body{padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom))}
+main{padding-bottom:28px}
+.top{height:62px;padding:0 12px}.brand{font-size:15px}.brand small{font-size:9px}.wallet{font-size:14px}.levelchip{padding:5px 7px;margin-right:5px}
+nav{position:fixed;left:0;right:0;bottom:0;top:auto;height:var(--navh);padding:7px max(7px,env(safe-area-inset-left)) max(7px,env(safe-area-inset-bottom));grid-template-columns:repeat(6,1fr);gap:5px;z-index:80;border-top:1px solid #2a3547;border-bottom:0;background:#0b1019f7;box-shadow:0 -10px 30px #0008}
+nav button{min-width:0;height:58px;padding:5px 2px;border-radius:12px;font-size:9px;line-height:1.15;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+nav button:nth-child(6){display:none}
+main{padding:14px 12px}.view h1{font-size:24px;line-height:1.1}.sub{font-size:12px;line-height:1.45;margin-bottom:13px}
+.card,.panel,.hero{border-radius:16px}.card{padding:10px}.row button,.action,.filter{min-height:44px}.inspect{min-height:42px}
+.toolbar{position:sticky;top:62px;z-index:20;padding:5px 0 8px;margin:0 -2px 8px;background:#090d14ee;backdrop-filter:blur(12px);overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.toolbar::-webkit-scrollbar{display:none}.filter{white-space:nowrap;flex:none}
+.grid{grid-template-columns:1fr 1fr;gap:9px}.phonebox{height:155px}.name{font-size:13px}.price{font-size:17px}
+.item{min-height:58px;padding:10px}.item button{min-height:42px}.messages{height:calc(100vh - 310px);min-height:240px}
+.modal{align-items:flex-end}.sheet{max-height:88vh;padding:15px;border-radius:20px 20px 0 0}.close{padding:4px 8px}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.phonebox{height:180px}.wallet{font-size:13px}.brand small{display:none}nav button{font-size:8px}}
+@media(min-width:760px){body{padding-bottom:0}nav{position:sticky;top:62px;bottom:auto;height:auto;border-bottom:1px solid var(--line);border-top:0;box-shadow:none;grid-template-columns:repeat(7,1fr);padding:8px}nav button:nth-child(6){display:flex}main{padding-bottom:30px}}
+</style>
+
+<style id="v12-fixes">
+/* v12 — mobile-first fixes + messenger UI */
+@media(max-width:759px){
+  nav{grid-template-columns:repeat(7,minmax(0,1fr))!important;height:78px!important;gap:2px!important;padding:5px 5px max(5px,env(safe-area-inset-bottom))!important}
+  nav button{display:flex!important;height:58px!important;font-size:8px!important;min-width:0!important}
+  .bottom-nav button{min-height:52px}
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
+  main{padding-bottom:14px!important}
+}
+.chat-screen{position:fixed;inset:0;z-index:300;background:#1a1e28;color:#f5f7fb;display:flex;flex-direction:column;overflow:hidden}
+.chat-head{height:76px;flex:0 0 76px;background:#1b202b;border-bottom:1px solid #2b313e;display:flex;align-items:center;gap:12px;padding:0 12px;padding-top:env(safe-area-inset-top)}
+.chat-back{width:42px;height:42px;border:0;background:transparent;color:#eef3fb;font-size:34px;line-height:1;border-radius:12px}
+.chat-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#0e1420;color:#4da0ff;font-weight:950;font-size:22px;border:1px solid #263044}
+.chat-person{min-width:0}.chat-person b{display:block;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-person span{display:block;color:#8d96a8;font-size:13px;margin-top:2px}
+.chat-product{margin:12px 12px 4px;background:#10141b;border-radius:13px;display:flex;align-items:center;gap:12px;padding:10px 12px;flex:0 0 auto}
+.chat-product-art{width:86px;height:74px;border-radius:10px;background:#87572f;display:flex;align-items:center;justify-content:center;overflow:hidden}.chat-product-art .phoneart{transform:scale(.42) rotate(-2deg)}
+.chat-product-info{min-width:0}.chat-product-price{font-size:19px;font-weight:950}.chat-product-name{font-size:14px;color:#9aa3b4;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-messages{flex:1;overflow:auto;padding:10px 12px 150px;scroll-behavior:smooth}
+.chat-bubble{max-width:88%;width:max-content;padding:11px 13px;border-radius:17px;margin:7px 0;background:#11151d;color:#f2f4f8;font-size:16px;line-height:1.25;box-shadow:0 1px 1px #0003}.chat-bubble.me{margin-left:auto;background:#151922}.chat-time{display:block;text-align:right;color:#737c8d;font-size:10px;margin-top:4px}
+.chat-actions{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a1e2800 0,#1a1e28 20%,#1a1e28 100%);padding:20px 22px max(12px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+.chat-action{width:100%;min-height:54px;border-radius:17px;border:2px solid #4b9bff;background:transparent;color:#4fa0ff;font-weight:900;font-size:18px;padding:10px 14px;text-align:left}.chat-action.primary{background:#4c99f6;color:white}.chat-action:active{transform:scale(.99)}
+.chat-compose{display:flex;gap:7px;padding:8px 12px;background:#151a24;border-top:1px solid #252d3b}.chat-compose input{flex:1;margin:0;border-radius:16px}.chat-compose button{width:48px;border-radius:16px}
+.chat-close{position:absolute;right:8px;top:8px;z-index:4;width:38px;height:38px;border:0;background:#0004;color:#fff;border-radius:50%;font-size:22px}
+@media(min-width:760px){.chat-screen{width:min(660px,100%);left:50%;right:auto;transform:translateX(-50%);box-shadow:0 0 80px #000}.chat-actions{padding-bottom:18px}.chat-messages{padding-bottom:170px}}
+</style>
+
+<style id="v13-phone-realism">
+/* Более реалистичные корпуса для осмотра: крупный масштаб, камеры и материалы по брендам */
+.inspect-phone{width:235px;height:455px;transform:rotate(-1deg);filter:drop-shadow(0 30px 25px #000d)}
+.inspect-body{border-radius:45px;border-width:4px;box-shadow:inset 5px 5px 11px #fff6,inset -14px -18px 24px #0008,0 0 0 2px #ffffff20}
+.inspect-back .inspect-body{background:linear-gradient(145deg,var(--p1),var(--p2));}
+.inspect-back.apple .inspect-body{background:linear-gradient(145deg,#e7d8b8,#b7a782 48%,#e3d0a9);border-color:#c7b995}
+.inspect-back.samsung .inspect-body{background:linear-gradient(145deg,#aab1bb,#505863 52%,#222831);border-color:#8e96a1}
+.inspect-back.xiaomi .inspect-body{background:linear-gradient(145deg,#e9e9e9,#9ea5ac 52%,#555d66);border-color:#b9bec4}
+.inspect-back.pixel .inspect-body{background:linear-gradient(145deg,#7c8797,#343b45 52%,#171b21);border-color:#858d98}
+.inspect-back.honor .inspect-body{background:linear-gradient(145deg,#76a6d8,#31547a 52%,#15283c);border-color:#6e94bb}
+.inspect-back.realme .inspect-body{background:linear-gradient(145deg,#75c99b,#276a4a 52%,#102c20);border-color:#68b78c}
+.inspect-cam{position:absolute;z-index:4;left:15px;top:15px;width:86px;height:106px;border-radius:25px;background:linear-gradient(145deg,#d8ceb3,#a79b7d);box-shadow:inset 0 1px 2px #fff9,0 7px 14px #0006}
+.inspect-cam .ilens{position:absolute;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 27%,#b9d2ff 0 8%,#536d9d 10%,#1a2843 38%,#02050a 72%);border:3px solid #4b5057;box-shadow:inset 0 0 5px #fff6,0 2px 3px #0009}
+.inspect-cam .a{left:8px;top:8px}.inspect-cam .b{right:8px;top:8px}.inspect-cam .c{left:8px;bottom:8px}.inspect-cam .d{right:8px;bottom:8px}
+.inspect-cam .inspect-flash{position:absolute;right:10px;bottom:40px;width:11px;height:11px;border-radius:50%;background:#fff6d0;box-shadow:0 0 9px #fff6}
+.inspect-sensor{position:absolute;right:11px;bottom:18px;width:9px;height:9px;border-radius:50%;background:#101114}
+.cam-samsung{width:48px;height:154px;border-radius:25px;background:transparent;box-shadow:none;left:17px;top:19px}
+.cam-samsung .ilens{width:39px;height:39px;left:3px!important;right:auto!important}.cam-samsung .a{top:3px}.cam-samsung .b{top:55px}.cam-samsung .c{top:107px}.cam-samsung .inspect-flash{right:-3px;bottom:10px}
+.cam-pixel{width:202px;height:43px;left:50%;top:18px;transform:translateX(-50%);border-radius:14px;background:linear-gradient(180deg,#c4c9ce,#6f7780);box-shadow:inset 0 1px 2px #fff8,0 5px 10px #0006}
+.cam-pixel .ilens{width:31px;height:31px;top:6px}.cam-pixel .a{left:18px}.cam-pixel .b{right:18px}.cam-pixel .inspect-flash{right:76px;bottom:13px;width:9px;height:9px}
+.cam-xiaomi{width:100px;height:100px;left:16px;top:16px;border-radius:50%;background:radial-gradient(circle,#2c3239,#11161c 70%);box-shadow:inset 0 1px 2px #fff3,0 7px 14px #0007}
+.cam-xiaomi .ilens{width:34px;height:34px}.cam-xiaomi .a{left:14px;top:14px}.cam-xiaomi .b{right:14px;top:14px}.cam-xiaomi .c{left:14px;bottom:14px}.cam-xiaomi .d{right:14px;bottom:14px}.cam-xiaomi .inspect-flash{right:8px;bottom:8px}
+.cam-honor{width:82px;height:82px;left:18px;top:18px;border-radius:50%;background:radial-gradient(circle,#39434f,#11151a 68%);box-shadow:inset 0 1px 2px #fff3,0 7px 14px #0007}
+.cam-honor .ilens{width:28px;height:28px}.cam-honor .a{left:12px;top:12px}.cam-honor .b{right:12px;top:12px}.cam-honor .c{left:27px;bottom:9px}.cam-honor .inspect-flash{right:9px;bottom:9px}
+.cam-realme{width:82px;height:105px;left:16px;top:16px;border-radius:18px;background:linear-gradient(145deg,#26322c,#090d0b);box-shadow:inset 0 1px 2px #fff2,0 7px 14px #0007}.cam-realme .ilens{width:29px;height:29px}.cam-realme .a{left:9px;top:9px}.cam-realme .b{right:9px;top:9px}.cam-realme .c{left:9px;bottom:9px}.cam-realme .inspect-flash{right:9px;bottom:9px}
+.cam-vivo{width:86px;height:86px;left:17px;top:17px;border-radius:50%;background:linear-gradient(145deg,#26303a,#080b0f);box-shadow:inset 0 1px 2px #fff2,0 7px 14px #0007}
+.inspect-logo{top:55%;font-size:17px;letter-spacing:2px;color:#ffffff55;text-shadow:0 1px 2px #0008}.apple-logo{font-family:Arial,sans-serif;font-size:34px;color:#6e6b62aa;letter-spacing:0}
+.inspect-front .inspect-body{background:#0a0d12;border-color:#30343b}.inspect-screen{inset:8px;border-radius:37px;background:radial-gradient(circle at 70% 18%,#ffbd8a,#d93677 42%,#32206f 82%)}
+.inspect-notch{width:78px;height:21px;top:8px;border-radius:0 0 18px 18px}.inspect-notch.dynamic{width:74px;height:25px;top:8px;border-radius:15px;background:#050609;box-shadow:0 1px 2px #fff1}
+.status-icons{position:absolute;top:14px;left:14px;right:14px;text-align:right;font-size:7px;color:#fff9;font-weight:800;z-index:2}.lock-icon{position:absolute;top:53px;left:50%;transform:translateX(-50%);font-size:12px;color:#fff9}.inspect-date{position:absolute;top:83px;left:18px;color:#fff9;font-weight:800;font-size:12px}.inspect-clock{position:absolute;top:111px;left:17px;color:#fff;font-size:47px;font-weight:950;letter-spacing:-2px}.inspect-home{height:5px;width:58px;bottom:10px}
+.inspect-stage{min-height:515px;background:radial-gradient(circle at 50% 18%,#344b68,#121923 55%,#090e16);padding:10px}
+@media(max-width:560px){.inspect-phone{width:245px;height:475px}.inspect-stage{min-height:520px}.inspect-cam{transform:scale(1.02);transform-origin:top left}.inspect-hint{font-size:12px}}
+</style>
+
+<style id="v14-catalog-locks">
+.v14-badges{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0}.v14-badge{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#202532;border:1px solid #ffffff12}.v14-badge.lock{background:#39251c;border-color:#ff9d4d55;color:#ffbf7a}.v14-badge.broken{background:#392023;border-color:#ff5d6c55;color:#ff8b96}.v14-badge.ideal{background:#163126;border-color:#4de69a55;color:#73f0b1}.v14-badge.good{background:#1d2c3d;color:#91c8ff}.icloud-panel{background:linear-gradient(180deg,#171c28,#0f141d);border:1px solid #ffffff12;border-radius:20px;padding:16px}.icloud-lock{font-size:44px;text-align:center;margin:4px 0 8px}.icloud-progress{height:9px;border-radius:99px;background:#252b38;overflow:hidden}.icloud-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5aa8ff,#8a7dff);transition:.25s}.icloud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.icloud-key{min-height:62px;border:1px solid #ffffff18;background:#202634;border-radius:14px;color:#fff;font-size:22px;font-weight:900}.icloud-key:active{transform:scale(.97)}.v14-step{padding:10px 12px;border-radius:13px;background:#202532;margin-top:8px}.v14-step.done{border-color:#48dc9a55;background:#153126}.v14-warning{background:#3a241c;color:#ffc28b;border:1px solid #ff9d4d33;border-radius:13px;padding:10px 12px}.v14-condition{font-weight:900}.v14-price-bonus{color:#69e6a8;font-weight:900}.v14-catalog-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:12px 0}.v14-catalog-count{font-size:12px;color:#8d98aa}.v14-faults{font-size:12px;color:#ff9da7}.v14-icloud-button{width:100%;margin-top:8px}
+@media(max-width:560px){.icloud-grid{grid-template-columns:repeat(3,1fr)}.icloud-key{min-height:56px}}
+\n/* v17 UX polish */\nbody{background:#0f131b}\n@media(max-width:759px){#market{padding-bottom:92px!important}#market .hero{position:sticky;top:0;z-index:12;background:rgba(15,19,27,.94);backdrop-filter:blur(14px);padding-top:8px;padding-bottom:10px;margin-bottom:8px}#marketGrid{gap:10px!important}.card{border:1px solid #252d3b!important;border-radius:18px!important;background:linear-gradient(180deg,#1a1f29,#141922)!important;overflow:hidden;box-shadow:0 8px 24px #0003}.card:active{transform:scale(.985)}.card .phoneart{border-radius:0!important;min-height:185px}.card .buy,.card .write{min-height:48px!important;border-radius:14px!important;font-size:15px!important}.card .inspect{min-height:44px!important;border-radius:13px!important}#nav{background:rgba(20,24,34,.97)!important;backdrop-filter:blur(18px);border-top:1px solid #293142!important}#nav button{font-size:11px!important;min-height:62px!important}}\n.chat-action{box-shadow:0 3px 12px #0003;transition:.16s ease}.chat-action:active{transform:scale(.975)}.chat-head{box-shadow:0 4px 18px #0004}.chat-product{border:1px solid #252d3a;box-shadow:0 5px 18px #0003}.seller-chat .chat-actions{padding-bottom:max(76px,env(safe-area-inset-bottom))}.deal-card{margin:8px 0;padding:12px;border:1px solid #315f91;background:#121b28;border-radius:15px}.deal-card b{display:block;margin-bottom:4px}.chat-compose input{min-width:0;height:48px}.chat-compose button{height:48px;font-weight:900}\n</style>
+<style id="v19-chat-market-phones">
+/* v19: unified chat + market refresh + richer phone renders */
+.chat-screen{background:#191d26}
+.chat-head{height:88px;flex-basis:88px;padding:0 18px;padding-top:env(safe-area-inset-top);background:#1a1f2a}
+.chat-head .chat-back{font-size:38px;width:42px;height:42px}
+.chat-avatar{width:54px;height:54px;font-size:24px;background:#101622}
+.chat-person b{font-size:20px}.chat-person span{font-size:14px}
+.chat-product{margin:10px 18px 4px;padding:11px 13px;border-radius:15px;background:#10141b}
+.chat-product-art{width:86px;height:76px;border-radius:11px}
+.chat-product-price{font-size:20px}.chat-product-name{font-size:15px}
+.chat-messages{padding:12px 18px 260px}
+.chat-bubble{max-width:88%;font-size:17px;padding:12px 15px;border-radius:17px;margin:8px 0;background:#11151d}
+.chat-bubble.me{background:#263247}
+.chat-actions{padding:22px 22px max(14px,env(safe-area-inset-bottom));gap:9px;background:linear-gradient(180deg,#191d2600 0,#191d26 18%,#191d26 100%)}
+.chat-action{min-height:57px;border-radius:18px;font-size:18px;border:2px solid #4b9bff;color:#4fa0ff;background:#191d26;padding:11px 14px}
+.chat-action.primary{background:#4c99f6;color:#fff}
+.chat-actions .chat-compose{display:none}
+.chat-price-row{display:flex;gap:8px;margin-top:2px}
+.chat-price-row input{flex:1;height:54px;border-radius:17px;border:2px solid #4b9bff;background:#11151d;color:#fff;padding:0 14px;font-weight:800}
+.chat-price-row button{height:54px;border-radius:17px;padding:0 16px}
+.phoneart.realistic-back .phonescreen{display:none}
+.phoneart.realistic-back .notch,.phoneart.realistic-back .speaker{display:none}
+.phoneart.realistic-back .camblock{display:block;z-index:5;left:9px;top:9px}
+.phoneart.realistic-back .logoMark{display:block;z-index:4;bottom:20px;color:#ffffff62}
+.phoneart.realistic-front .camblock,.phoneart.realistic-front .logoMark{display:none}
+.phoneart.realistic-front .phonebody:after{height:24px}
+.phoneart.realistic-front .phonescreen{inset:5px;border-radius:20px}
+.phoneart.realistic-front .notch{height:9px;width:34px}
+.phoneart.realistic-back .phonebody{box-shadow:inset 2px 2px 7px #fff6,inset -8px -12px 17px #0008,0 0 0 1px #ffffff20}
+.phoneart.realistic-back .phonebody:after{display:none}
+.phoneart.realistic-back .sidebtn{display:block}
+.camblock.apple{box-shadow:0 5px 12px #000b,inset 0 1px 2px #fff3}
+.camblock.samsung{box-shadow:0 5px 12px #000b,inset 0 1px 2px #fff2}
+.camblock.pixel{height:22px}
+@media(max-width:560px){.chat-head{height:84px;flex-basis:84px}.chat-messages{padding-left:12px;padding-right:12px}.chat-actions{padding-left:22px;padding-right:22px}.chat-action{font-size:17px;min-height:55px}}
+</style>
+<style id="v22-final-fix">
+/* v22: final mobile stability + detail modal fix */
+.modal .sheet{box-sizing:border-box;max-width:100%;}
+.detail-hero{overflow:hidden}
+.gallery-counter{position:absolute;right:10px;bottom:9px;background:#070b12cc;color:#fff;padding:5px 9px;border-radius:10px;font-size:10px;z-index:8}
+.detail-stage{overflow:hidden;min-height:0;}
+.detail-stage .phoneart{transform:scale(1.02) rotate(-2deg);max-width:100%;max-height:100%;}
+.detail-stage .phoneart.realistic-back{transform:scale(.98) rotate(-2deg);}
+.detail-stage .side-phone{max-height:250px;height:250px;}
+@media(max-width:560px){
+  .modal{align-items:flex-end;}
+  .modal .sheet{width:100%;max-height:90dvh;padding:10px 10px calc(10px + env(safe-area-inset-bottom));border-radius:18px 18px 0 0;}
+  .detail-stage{height:235px!important;min-height:235px!important;}
+  .detail-stage .phoneart{transform:scale(.88) rotate(-2deg)!important;}
+  .detail-stage .phoneart.realistic-back{transform:scale(.84) rotate(-2deg)!important;}
+  .detail-stage .side-phone{height:205px;max-height:205px;width:66px;}
+  .detail-info{padding:10px 4px 4px;}
+  .detail-info h2{font-size:21px!important;}
+  .detail-price{font-size:25px!important;}
+  .detail-actions{position:sticky;bottom:0;background:#151c28;padding-top:7px;z-index:3;}
+}
+@media(min-width:561px){.detail-stage{height:300px}.detail-stage .phoneart{transform:scale(1.08) rotate(-2deg)}.detail-stage .phoneart.realistic-back{transform:scale(1.02) rotate(-2deg)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><span class="levelchip">⭐ <span id="levelChip">1</span> уровень</span><span class="brand">📱 Купи айфон<small>PRO — купи дешевле, проверь, отремонтируй, продай дороже</small></span></div><div style="display:flex;align-items:center;gap:7px"><button class="city-chip" id="cityChip" onclick="openCities()">📍 Москва</button><div class="wallet" id="wallet">20 000 ₽</div></div></header>
+<nav id="nav" class="bottom-nav">
+<button class="active" onclick="page('market',this)">🏪<br>Рынок</button><button onclick="page('orders',this)">🚚<br>Доставка</button><button class="notif" onclick="page('myads',this)">📢<br>Продажи<span id="adDot" class="dot" style="display:none"></span></button><button class="notif" onclick="page('chats',this)">💬<br>Чаты<span id="chatDot" class="dot" style="display:none"></span></button><button onclick="page('repair',this)">🔧<br>Ремонт</button><button onclick="page('shop',this)">🏬<br>Магазин</button><button onclick="page('profile',this)">👤<br>Профиль</button>
+</nav>
+<main>
+<section id="market" class="view active"><div id="eventBox"></div><div class="hero"><button class="city-chip" style="float:right" onclick="openCities()">🗺️ Сменить город</button><b>🔥 Рынок кипит</b><br><span>Лови объявления с большой разницей между ценой продавца и рынком. <span class="green">Но сначала проверь телефон — продавец может кое-что «забыть».</span></span></div><div class="toolbar"><button class="filter active" onclick="filterMarket('all',this)">Все</button><button class="filter" onclick="filterMarket('ios',this)">🍎 iPhone</button><button class="filter" onclick="filterMarket('android',this)">🤖 Android</button><button class="filter" onclick="filterMarket('hot',this)">🔥 Выгодные</button></div><div class="grid" id="marketGrid"></div></section>
+<section id="inventory" class="view"><h1>📦 Склад</h1><div class="sub">Здесь лежат купленные телефоны. После получения их можно ремонтировать и выставлять на продажу.</div><div id="inventoryList"></div></section>
+<section id="orders" class="view"><h1>🚚 Доставка</h1><div class="sub">Управляй своими телефонами и забирай новые покупки у продавцов.</div><div class="delivery-tabs"><button id="deliveryMine" class="active" onclick="deliveryTab('mine')">📱 Мои телефоны</button><button id="deliveryPickup" onclick="deliveryTab('pickup')">📍 Нужно получить</button></div><div id="ordersList"></div></section>
+<section id="myads" class="view"><h1>📢 Мои продажи</h1><div class="sub">Выставляй объявления и отвечай покупателям. Цена — твоя стратегия.</div><div id="adsList"></div></section>
+<section id="chats" class="view"><h1>💬 Чаты</h1><div class="sub">Переговоры с продавцами и покупателями. Иногда наглость окупается 😈</div><div id="chatsList"></div></section>
+<section id="repair" class="view"><h1>🔧 Мастерская</h1><div class="sub">Исправляй скрытые проблемы и проходи мини-игру ремонта — чем точнее работа, тем выгоднее результат.</div><div id="repairList"></div></section>
+<section id="shop" class="view"><h1>🏬 Бизнес</h1><div class="sub">Прокачивай магазин, чтобы получать больше прибыли.</div><div id="shopList"></div></section>
+<section id="profile" class="view"><h1>👤 Профиль перекупа</h1><div class="sub">Твоя карьера, репутация и достижения.</div><div class="stats"><div class="stat"><span>💰 Баланс</span><b id="pBalance">20 000 ₽</b></div><div class="stat"><span>⭐ Репутация</span><b id="pRep">0</b></div><div class="stat"><span>🏆 Уровень</span><b id="pLevel">1</b></div><div class="stat"><span>📦 Продано</span><b id="pSold">0</b></div></div><div class="panel"><div class="panelhead"><b id="levelTitle">Новичок</b><b id="xpText">0/5 XP</b></div><div class="progress"><i id="prog"></i></div><div class="barline"><span>Следующий уровень</span><span id="nextLevel">5 репутации</span></div></div><div class="taxbox"><b>🧾 Налоги</b><div class="meta" style="margin-top:5px">Чем выше чистая прибыль с телефона, тем выше ставка: 5% → 10% → 15% → 20%.</div></div><div class="panel"><b>📊 Статистика</b><div class="item"><span>Всего потрачено</span><b id="spent">0 ₽</b></div><div class="item"><span>Всего заработано</span><b id="earned">0 ₽</b></div><div class="item"><span>Лучшая сделка</span><b id="best">0 ₽</b></div><div class="item"><span>Заплачено налогов</span><b id="taxPaid">0 ₽</b></div><div class="item"><span>Отремонтировано</span><b id="repairs">0</b></div></div><div class="panel"><b>🏆 Достижения</b><div id="achievements" class="listgrid"></div></div></section>
+</main></div>
+<div class="modal" id="modal"><div class="sheet"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+<script>
+const basePhones=[
+['iPhone 15 Pro Max','Apple',50000,62000,'Среднее','Артём','ios','Титан','#d5d9df','#30343b','tri'],['Vivo X300 Ultra','Vivo',42000,54000,'Отличное','Никита','android','Чёрный','#7b8ca8','#171c25','quad'],['iPhone 14 Pro','Apple',36000,47000,'Хорошее','Макс','ios','Фиолетовый','#8e6eaa','#24202d','tri'],['iPhone 13','Apple',31000,39000,'Хорошее','Илья','ios','Синий','#4c83d9','#122b54','tri'],['Samsung Galaxy S24 Ultra','Samsung',41000,53000,'Отличное','Роман','android','Титановый серый','#7c8490','#20252c','quad'],['Redmi A3','Xiaomi',6500,8500,'Хорошее','Максим','android','Зелёный','#78a86a','#1c3324','quad'],['iPhone 7 Plus','Apple',9000,13000,'Есть царапины','Дима','old','Серебро','#a8afb9','#333942','single'],['Samsung Galaxy S23','Samsung',28000,36000,'Отличное','Роман','android','Чёрный','#586273','#11151c','tri'],['Poco X6 Pro','Xiaomi',22000,29500,'Хорошее','Влад','android','Жёлтый','#e3b84e','#443714','quad'],['Realme 12 Pro+','Realme',18000,25000,'Отличное','Саша','android','Зелёный','#4fbd83','#123b2b','quad'],['Google Pixel 8','Google',27000,35000,'Хорошее','Егор','android','Обсидиан','#697487','#1b2029','single'],['Honor 200','Honor',21000,27500,'Как новый','Тимур','android','Синий','#5e8fc7','#102a47','tri'],['iPhone 11','Apple',19000,25000,'Хорошее','Кирилл','ios','Чёрный','#3d4654','#0d1117','tri'],['Samsung Galaxy A55','Samsung',23000,29000,'Как новый','Антон','android','Синий','#4f8bc4','#122a43','quad'],['Xiaomi 14','Xiaomi',30000,39000,'Отличное','Денис','android','Белый','#d5d8dc','#34373c','tri']
+];
+const phones=basePhones.map((x,i)=>({id:i,name:x[0],brand:x[1],price:x[2],market:x[3],condition:x[4],seller:x[5],type:x[6],color:x[7],p1:x[8],p2:x[9],cams:x[10]}));
+let state={balance:20000,rep:0,sold:0,level:1,inventory:[],orders:[],ads:[],chats:{},buyerChats:{},spent:0,earned:0,best:0,repairs:0,store:0,event:null,day:1,events:0,ach:{},unread:0,cases:{basic:2,carbon:0,clear:0,leather:0,armor:0},taxPaid:0,sales:[],city:'moscow'};
+try{const s=JSON.parse(localStorage.getItem('perekupPRO'));if(s)state={...state,...s}}catch(e){}
+state.cases=state.cases||{basic:2,carbon:0,clear:0,leather:0,armor:0};state.taxPaid=state.taxPaid||0;state.sales=state.sales||[];state.city=state.city||'moscow';
+if(!Array.isArray(state.inventory))state.inventory=[];
+if(!Array.isArray(state.orders))state.orders=[];
+if(!Array.isArray(state.ads))state.ads=[];
+state.chats=state.chats&&typeof state.chats==='object'?state.chats:{};
+state.buyerChats=state.buyerChats&&typeof state.buyerChats==='object'?state.buyerChats:{};
+state.ach=state.ach&&typeof state.ach==='object'?state.ach:{};
+state.sales=Array.isArray(state.sales)?state.sales:[];
+state.cases={basic:2,carbon:0,clear:0,leather:0,armor:0,...(state.cases||{})};
+state.repairs=Number(state.repairs||0);state.taxPaid=Number(state.taxPaid||0);state.spent=Number(state.spent||0);state.earned=Number(state.earned||0);state.best=Number(state.best||0);state.day=Number(state.day||1);state.unread=Number(state.unread||0);
+state.inventory.forEach(x=>{x.firmware=x.firmware||'Сток';x.firmwareDone=!!x.firmwareDone;x.rooted=!!x.rooted;x.techScore=Number(x.techScore||0);x.repairsDone=Array.isArray(x.repairsDone)?x.repairsDone:[];x.lockStatus=x.lockStatus||'none';x.lockResolved=!!x.lockResolved;x.stateTag=x.stateTag||'good';});
+const cities={
+ moscow:{name:'Москва',ticket:1000,base:1.08,desc:'Высокий спрос, особенно на iPhone.',brand:{Apple:1.06,Samsung:1.02,Xiaomi:.98,Google:1.01,Vivo:1.03,Honor:1,Realme:.99}},
+ spb:{name:'Санкт-Петербург',ticket:1000,base:1.03,desc:'Стабильный рынок и хороший спрос на флагманы.',brand:{Apple:1.04,Samsung:1.01,Xiaomi:1,Google:1.02,Vivo:1.01,Honor:1,Realme:1}},
+ kazan:{name:'Казань',ticket:1000,base:.96,desc:'Цены ниже, зато можно находить дешёвые закупки.',brand:{Apple:.98,Samsung:1.01,Xiaomi:1.04,Google:.98,Vivo:1.03,Honor:1.03,Realme:1.05}},
+ ekb:{name:'Екатеринбург',ticket:1000,base:.94,desc:'Один из самых дешёвых рынков для закупки.',brand:{Apple:.97,Samsung:1.01,Xiaomi:1.05,Google:.97,Vivo:1.02,Honor:1.04,Realme:1.05}},
+ sochi:{name:'Сочи',ticket:1000,base:1.06,desc:'Дорогой рынок — туристы любят свежие флагманы.',brand:{Apple:1.08,Samsung:1.04,Xiaomi:.98,Google:1.03,Vivo:1.02,Honor:1,Realme:.98}},
+ novosib:{name:'Новосибирск',ticket:1000,base:.92,desc:'Низкие цены, но спрос на премиум чуть слабее.',brand:{Apple:.96,Samsung:.99,Xiaomi:1.05,Google:.95,Vivo:1.03,Honor:1.02,Realme:1.04}}
+};
+function cityFactor(p){let c=cities[state.city]||cities.moscow;return c.base*(c.brand[p.brand]||1)}
+function cityMarketPrice(p){return Math.round(p.market*cityFactor(p))}
+function cityBuyPrice(p){let c=cityFactor(p);return Math.round(p.price*marketFactor(p)*c)}
+function cityDelta(p){return Math.round((cityFactor(p)-1)*100)}
+function openCities(){let cur=cities[state.city]||cities.moscow;document.getElementById('modalBody').innerHTML=`<h2>🗺️ Города</h2><div class="notice">Смена города влияет на цены телефонов. Билет в любой другой город стоит <b class="travel-cost">1 000 ₽</b>. Текущий город: <b>${cur.name}</b>.</div><div class="city-grid">${Object.entries(cities).map(([k,c])=>`<div class="city-card ${k===state.city?'active':''}"><b>${k===state.city?'📍 ':''}${c.name}</b><div class="city-price">${c.base>1?'📈':'📉'} Базовые цены ${c.base>1?'+':''}${Math.round((c.base-1)*100)}%</div><small>${c.desc}</small><button class="action ${k===state.city?'':'primary'} smallbtn" ${k===state.city?'disabled':''} onclick="travelTo('${k}')">${k===state.city?'Ты здесь':'🎫 Билет · 1 000 ₽'}</button></div>`).join('')}</div><div class="panel"><b>💡 Как работает рынок</b><div class="item"><span>🍎 iPhone</span><b>${cityDelta({...phones[0],brand:'Apple'})>=0?'+':''}${cityDelta({...phones[0],brand:'Apple'})}%</b></div><div class="item"><span>📱 Samsung</span><b>${cityDelta({...phones[4],brand:'Samsung'})>=0?'+':''}${cityDelta({...phones[4],brand:'Samsung'})}%</b></div><div class="item"><span>🤖 Xiaomi</span><b>${cityDelta({...phones[5],brand:'Xiaomi'})>=0?'+':''}${cityDelta({...phones[5],brand:'Xiaomi'})}%</b></div></div>`;document.getElementById('modal').classList.add('open')}
+function travelTo(k){if(k===state.city)return;if(state.balance<1000)return alert('💸 Не хватает 1 000 ₽ на билет.');state.balance-=1000;state.city=k;state.day++;save();closeModal();render();alert('🎫 Билет куплен! Ты приехал в '+cities[k].name+'. Цены на рынке изменились.');}
+
+let repairGame=null;
+const money=n=>Math.round(n).toLocaleString('ru-RU')+' ₽';
+const save=()=>localStorage.setItem('perekupPRO',JSON.stringify(state));
+function levelUp(){state.level=1+Math.floor(state.rep/5)}
+function update(){levelUp();cityChip.textContent='📍 '+(cities[state.city]||cities.moscow).name;wallet.textContent=money(state.balance);pBalance.textContent=money(state.balance);pRep.textContent=state.rep;pSold.textContent=state.sold;pLevel.textContent=state.level;levelChip.textContent=state.level;spent.textContent=money(state.spent);earned.textContent=money(state.earned);best.textContent=money(state.best);taxPaid.textContent=money(state.taxPaid||0);repairs.textContent=state.repairs;let titles=['Новичок','Перекуп','Опытный перекуп','Бизнесмен','Магнат','Король рынка'];levelTitle.textContent=titles[Math.min(titles.length-1,state.level-1)];let xp=state.rep%5;prog.style.width=(xp/5*100||2)+'%';xpText.textContent=xp+'/5 XP';nextLevel.textContent=(5-xp)+' репутации';chatDot.style.display=state.unread?'block':'none';adDot.style.display=state.ads.some(a=>a.offer)?'block':'none';renderAchievements()}
+function phoneArt(p,mini=false){
+  let old=p.type==='old';
+  let cam=p.cams==='single'?'singlecam':(p.cams==='quad'?'quadcam':'triCam');
+  let brandClass=(p.brand||'').toLowerCase().replace(/[^a-z]+/g,'');
+  let glow=p.brand==='Apple'?'#6aa8ff55':p.brand==='Samsung'?'#8e7dff55':p.brand==='Xiaomi'?'#ffb34755':p.brand==='Google'?'#58d6ff55':p.brand==='Honor'?'#8da8ff55':'#51e4ff55';
+  if(mini)return `<div class="miniart" style="background:linear-gradient(145deg,${p.p1},${p.p2})"><div style="position:absolute;inset:3px;border-radius:7px;background:linear-gradient(150deg,${p.p2},#070b10)"></div><span style="position:absolute;right:3px;top:4px;width:10px;height:13px;border-radius:4px;background:#111;border:1px solid #ffffff20"></span></div>`;
+  let camExtra='';
+  if(p.brand==='Apple')camExtra='<span class="camera-ring"></span>';
+  return `<div class="phoneart ${old?'oldphone ':''}${cam}" style="--glow:${glow}"><div class="phonebody" style="--p1:${p.p1};--p2:${p.p2}"><div class="phoneedge"></div><div class="sidebtn"></div><div class="phonescreen"><div class="wallpaper"><span class="time">17:42</span><span class="appdot"></span><span class="screenicons"><i></i><i></i><i></i></span></div><div class="notch"></div><div class="speaker"></div></div><div class="camblock ${cam} ${brandClass}"><i class="lens l1"></i><i class="lens l2"></i><i class="lens l3"></i><i class="lens l4"></i><i class="flash"></i>${camExtra}</div><div class="logoMark">${p.brand.toUpperCase()}</div></div></div>`
+}
+
+function cardPhone(p){let f=marketFilter==='hot'?(p.market-p.price)>6000:true;if(marketFilter==='ios')f=p.type==='ios';if(marketFilter==='android')f=p.type==='android';if(!f)return '';let factor=marketFactor(p);let price=cityBuyPrice(p);let market=cityMarketPrice(p);return `<article class="card" onclick="openListing(${p.id})">${phoneArt(p)}<div class="spec"><div><div class="name">${p.name}</div><div class="meta">${p.brand} · ${p.color} · ${p.condition}</div></div><span class="tag">${p.type==='ios'?'iOS':'Android'}</span></div><div class="price">${money(price)}</div><div class="profit">Рынок ${money(market)} · потенциал +${money(Math.max(0,market-price))} · ${cityDelta(p)>=0?'+':''}${cityDelta(p)}%</div><div class="meta">👤 ${p.seller} · ${sellerMood(p.id)}</div><div class="row"><button class="buy" onclick="event.stopPropagation();buy(${p.id})">Купить</button><button class="write" onclick="event.stopPropagation();chatSeller(${p.id})">💬 Торг</button></div><button class="action inspect" onclick="event.stopPropagation();inspect(${p.id})">🔍 Осмотреть</button></article>`}
+let marketFilter='all';function filterMarket(f,b){marketFilter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderMarket()}
+function marketFactor(p){let wave=Math.sin((state.day+p.id)*1.3)*.035;let storeBonus=state.store*0.008;return 1+wave-storeBonus}
+function sellerMood(id){return ['торгаш','спокойный','срочно нужны деньги','жёсткий продавец','готов уступить'][id%5]}
+function renderMarket(){marketGrid.innerHTML=phones.map(cardPhone).join('');renderEvent()}
+function buy(id){let p={...phones.find(x=>x.id===id)};let price=cityBuyPrice(p);if(state.balance<price)return alert('💸 Не хватает денег. Ищи вариант дешевле или сначала продай что-нибудь.');state.balance-=price;state.spent+=price;let item={uid:Date.now()+Math.random(),...p,baseMarket:p.market,buyCity:state.city,buyPrice:price,status:'Забрать у продавца',faults:null,repairsDone:[]};state.inventory.push(item);state.orders.push({uid:item.uid,name:item.name,buyPrice:price,seller:item.seller,status:'Забрать у продавца'});state.rep++;maybeEvent('buy');save();render();alert('📦 Сделка оформлена! Теперь забери телефон у продавца.');}
+function mini(p){return phoneArt(p,true)}
+function renderInventory(){let el=inventoryList;if(!state.inventory.length){el.innerHTML='<div class="empty">📦 Склад пуст.<br>Купи первый телефон на рынке.</div>';return}el.innerHTML=state.inventory.map(x=>{let potential=Math.max(0,Math.round(cityMarketPrice(x)*(1.18+state.store*.025)*(1+(x.caseBonus||0))-x.buyPrice));return `<div class="phone-list-card"><div class="list-art">${phoneArt(x,true)}</div><div style="flex:1"><b>${x.name}</b><small>Куплен за ${money(x.buyPrice)} · рынок сейчас ${money(cityMarketPrice(x))}</small><div class="profit-big">Потенциал прибыли +${money(potential)}</div><small>${x.case?'🛡️ '+caseName(x.case):'📱 Без чехла'} · ${x.status}</small><div>${x.firmwareDone?'<span class="tech-badge fw">💾 PRO OS</span>':''}${x.rooted?'<span class="tech-badge root">🛡️ Root</span>':''}</div></div><button class="action" onclick="inventoryActions(${x.uid})">Открыть</button></div>`}).join('')}
+let deliveryMode='mine';
+function deliveryTab(mode){deliveryMode=mode;document.getElementById('deliveryMine').classList.toggle('active',mode==='mine');document.getElementById('deliveryPickup').classList.toggle('active',mode==='pickup');renderOrders()}
+function advanceOrder(uid){
+  const order=state.orders.find(o=>String(o.uid)===String(uid));
+  if(!order)return;
+  const item=state.inventory.find(x=>String(x.uid)===String(uid));
+  if(!item)return;
+  if(order.status==='Забрать у продавца'){
+    order.status='Получен';
+    item.status='Готов к продаже';
+    item.receivedAt=new Date().toLocaleString('ru-RU');
+    state.rep+=1;
+    save();
+    render();
+    alert('📦 Телефон забран у продавца! Теперь он находится у тебя и готов к дальнейшим действиям.');
+    return;
+  }
+  if(order.status==='Получен' || order.status==='Готов к отправке'){
+    order.status='Отправлен покупателю';
+    item.status='Отправлен покупателю';
+    save();
+    render();
+    alert('🚚 Телефон отправлен покупателю!');
+    return;
+  }
+}
+function renderOrders(){let el=ordersList;if(deliveryMode==='mine'){let xs=state.inventory;if(!xs.length){el.innerHTML='<div class="empty">📱 Пока у тебя нет телефонов.<br>Купи что-нибудь на рынке.</div>';return}el.innerHTML=xs.map(x=>{let potential=Math.max(0,Math.round(cityMarketPrice(x)*(1.18+state.store*.025)*(1+(x.caseBonus||0))-x.buyPrice));return `<div class="phone-list-card"><div class="list-art">${phoneArt(x,true)}</div><div style="flex:1"><b>${x.name}</b><small>Себестоимость ${money(x.buyPrice)} · рынок сейчас ${money(cityMarketPrice(x))}</small><div class="profit-big">Прибыль: +${money(potential)}</div><small>${x.status==='Готов к продаже'?'Можно ремонтировать и выставлять':'Нужно получить у продавца'}</small></div><button class="action" onclick="inventoryActions(${x.uid})">Открыть</button></div>`}).join('');return}let pending=state.orders.filter(o=>o.status==='Забрать у продавца');if(!pending.length){el.innerHTML='<div class="empty">📍 Сейчас нечего забирать.<br>Купленные телефоны появятся здесь после покупки на рынке.</div>';return}el.innerHTML=pending.map(o=>{let pp=phones.find(p=>p.name===o.name)||phones[0];return `<div class="phone-list-card"><div class="list-art">${phoneArt(pp,true)}</div><div style="flex:1"><b>${o.name}</b><small>Продавец: ${o.seller}</small><div class="meta">Статус: ${o.status}</div></div><button class="action primary" onclick="advanceOrder(${o.uid})">${o.status==='Забрать у продавца'?'📍 Забрать':'📦 Отправить'}</button></div>`}).join('')}
+function renderAds(){let el=adsList;if(!state.ads.length){el.innerHTML='<div class="empty">📢 Объявлений нет.<br>Забери телефон со склада и выставь его на продажу.</div>';return}el.innerHTML=state.ads.map((a,i)=>`<div class="item">${mini(a)}<div style="flex:1"><b>${a.name}</b><small>Цена: ${money(a.price)} · себестоимость ${money(a.buyPrice)}</small><small>${a.offer?'🔥 Покупатель предлагает '+money(a.offer):'Ожидает покупателей'}</small><small>${taxText(Math.max(0,(a.offer||a.price)-a.buyPrice))}</small></div><button class="action primary" onclick="buyerOffer(${i})">${a.offer?'Ответить':'Искать покупателя'}</button></div>`).join('')}
+function createAd(uid){let x=state.inventory.find(a=>a.uid===uid);if(!x)return;if(x.status==='Забрать у продавца')return alert('Сначала забери телефон у продавца.');document.getElementById('modalBody').innerHTML=`<h2>📢 Выставить ${x.name}</h2><div class="notice">Рынок сейчас в ${cities[state.city].name}: ${money(cityMarketPrice(x))}. Хорошая стратегия — поставить чуть ниже рынка, если хочешь продать быстро.</div><input id="adPrice" class="field" type="number" value="${Math.round(cityMarketPrice(x)*.96)}"><button class="action primary" style="width:100%" onclick="publishAd(${uid})">Опубликовать объявление</button>`;document.getElementById('modal').classList.add('open')}
+function publishAd(uid){let x=state.inventory.find(a=>a.uid===uid),v=+document.getElementById('adPrice').value;if(!x||!v)return;if(state.ads.some(a=>a.uid===uid))return alert('Этот телефон уже выставлен.');state.ads.push({...x,price:v,offer:null});save();closeModal();render();alert('📢 Объявление опубликовано!');}
+function buyerOffer(i){let a=state.ads[i];if(!a)return;let offers=[.91,.96,1.02,1.06];let offer=Math.round(a.price*offers[(state.day+i)%offers.length]);a.offer=offer;state.unread++;state.buyerChats[a.uid]={name:a.name,msgs:[`Покупатель: Привет! Заберу ${a.name} за ${money(offer)}.`,`Покупатель: Можем оформить сегодня?`]};save();render();openBuyer(a.uid)}
+function openBuyer(uid){let a=state.ads.find(x=>String(x.uid)===String(uid)),c=state.buyerChats[uid] || state.buyerChats[String(uid)];document.getElementById('modalBody').innerHTML=`<h2>💬 Покупатель — ${a.name}</h2><div class="messages">${c.msgs.map((m,i)=>`<div class="msg ${i%2?'':'me'}">${m}</div>`).join('')}</div><div class="row"><button class="action danger" onclick="buyerDecision(${uid},'no')">Отказать</button><button class="action" onclick="buyerDecision(${uid},'counter')">Поторговаться</button><button class="action primary" onclick="buyerDecision(${uid},'yes')">Продать за ${money(a.offer)}</button></div>`;document.getElementById('modal').classList.add('open')}
+function buyerDecision(uid,type){let a=state.ads.find(x=>String(x.uid)===String(uid)),c=state.buyerChats[uid]||state.buyerChats[String(uid)];if(!a)return;if(type==='no'){c.msgs.push('Ты: Нет, спасибо.');a.offer=null;state.unread=Math.max(0,state.unread-1);save();closeModal();render();return}if(type==='counter'){let v=Math.round(a.offer*1.035);a.offer=v;c.msgs.push('Ты: Могу уступить до '+money(v)+'.');c.msgs.push('Покупатель: Хм... '+money(v)+' меня устраивает 👍');c.msgs.push('Сделка согласована.');}else{c.msgs.push('Ты: Договорились!');c.msgs.push('Покупатель: Отлично, оформляем.');let sale=saleNet(a.offer,a.buyPrice);state.balance+=sale.net;state.earned+=sale.net;state.taxPaid=(state.taxPaid||0)+sale.tax;state.best=Math.max(state.best,sale.profit);state.sold++;state.rep+=3;state.sales.unshift({name:a.name,sell:a.offer,buyPrice:a.buyPrice,profit:sale.profit,tax:sale.tax,time:new Date().toLocaleString('ru-RU')});state.day++;state.ads=state.ads.filter(x=>x.uid!==uid);let idx=state.inventory.findIndex(x=>String(x.uid)===String(uid));if(idx>=0)state.inventory.splice(idx,1);state.unread=Math.max(0,state.unread-1);maybeEvent('sell');alert(`🔥 Продажа состоялась!\nЦена: ${money(a.offer)}\n${taxText(sale.profit)}\nНа руки: ${money(sale.net)}\nЧистая прибыль: ${money(sale.profit-sale.tax)}`);save();closeModal();render();return}save();openBuyer(uid)}
+
+function renderOrders(){
+  let el=ordersList;
+  if(deliveryMode==='mine'){
+    let xs=state.inventory.filter(x=>x.status!=='Забрать у продавца');
+    if(!xs.length){el.innerHTML='<div class="empty">📱 Здесь будут телефоны, которые уже у тебя.<br>Новые покупки сначала забери во вкладке «Нужно получить».</div>';return}
+    el.innerHTML=xs.map(x=>{let potential=Math.max(0,Math.round(cityMarketPrice(x)*(1.18+state.store*.025)*(1+(x.caseBonus||0))-x.buyPrice));return `<div class="phone-list-card"><div class="list-art">${phoneArt(x,true)}</div><div style="flex:1"><b>${x.name}</b><small>Себестоимость ${money(x.buyPrice)} · рынок сейчас ${money(cityMarketPrice(x))}</small><div class="profit-big">Прибыль: +${money(potential)}</div><small>${x.status}</small></div><button class="action" onclick="inventoryActions(${x.uid})">Открыть</button></div>`}).join('');
+    return;
+  }
+  let pending=state.orders.filter(o=>o.status==='Забрать у продавца');
+  if(!pending.length){el.innerHTML='<div class="empty">📍 Сейчас нечего забирать.<br>Купленные телефоны появятся здесь после покупки на рынке.</div>';return}
+  el.innerHTML=pending.map(o=>{let pp=phones.find(p=>p.name===o.name)||phones[0];return `<div class="phone-list-card"><div class="list-art">${phoneArt(pp,true)}</div><div style="flex:1"><b>${o.name}</b><small>Продавец: ${o.seller}</small><div class="meta">Статус: ${o.status}</div></div><button class="action primary" onclick="advanceOrder(${o.uid})">📍 Забрать</button></div>`}).join('');
+}
+function renderChats(){let el=chatsList;if(!el)return;let html='';Object.keys(state.chats).forEach(k=>{let c=state.chats[k];html+=`<div class="item"><div><b>Продавец · ${c.name}</b><small>${c.msgs[c.msgs.length-1]}</small></div><button class="action" onclick="chatSeller(${k})">Открыть</button></div>`});Object.keys(state.buyerChats).forEach(k=>{let c=state.buyerChats[k];html+=`<div class="item"><div><b>Покупатель · ${c.name}</b><small>${c.msgs[c.msgs.length-1]}</small></div><button class="action primary" onclick="openBuyer(${k})">Открыть</button></div>`});el.innerHTML=html||'<div class="empty">💬 Пока тишина.<br>Открывай торг на рынке или жди покупателей.</div>'}
+function sellerChatText(msg){return String(msg||'').replace(/^Продавец:\s*/,'').replace(/^Ты:\s*/,'')}
+function sellerBubbleHtml(msg){let me=String(msg||'').startsWith('Ты:');return `<div class="chat-bubble ${me?'me':''}">${sellerChatText(msg)}<span class="chat-time">сейчас</span></div>`}
+function sellerChatClose(){const e=document.getElementById('v17SellerChat');if(e)e.remove();document.body.style.overflow='';}
+function chatSeller(id){
+  let p=phones.find(x=>x.id==id);if(!p)return;
+  if(!state.chats[id])state.chats[id]={name:p.seller||p.name,msgs:[`Продавец: Привет! ${p.name} отдаю за ${money(v14BuyPrice(p))}.`,`Продавец: Торг есть, но без фантазий 😎`],dealPrice:null,asking:v14BuyPrice(p)};
+  let c=state.chats[id];state.unread=0;save();
+  const asking=Number(c.asking)||v14BuyPrice(p);c.asking=asking;
+  const deal=c.dealPrice?`<div class="deal-card"><b>🤝 Продавец согласился</b><span>Цена: <strong>${money(c.dealPrice)}</strong></span><button class="chat-action primary" style="margin-top:9px" onclick="acceptSellerDeal(${id})">📱 Забрать за ${money(c.dealPrice)}</button></div>`:'';
+  const initial=(p.seller||'П')[0].toUpperCase();
+  const html=`<div id="v17SellerChat" class="chat-screen seller-chat"><div class="chat-head"><button class="chat-back" onclick="sellerChatClose()">‹</button><div class="chat-avatar">${initial}</div><div class="chat-person"><b>${p.seller||'Продавец'}</b><span>Продавец · ${p.name}</span></div></div><div class="chat-product"><div class="chat-product-art">${mini(p)}</div><div class="chat-product-info"><div class="chat-product-price">Цена: ${money(asking)}</div><div class="chat-product-name">${p.name}, ${p.storage||'256 ГБ'}</div></div></div><div id="sellerChatMessages" class="chat-messages">${c.msgs.map(sellerBubbleHtml).join('')}${deal}</div><div class="chat-actions"><button class="chat-action" onclick="quickSeller(${id},'Телефон ещё в продаже?')">Телефон ещё в продаже?</button><button class="chat-action" onclick="quickSeller(${id},'Есть торг?')">Есть торг?</button><div class="chat-compose"><input id="sellerOffer" class="field" type="number" inputmode="numeric" placeholder="Твоя цена"><button class="action primary" onclick="offer(${id})">💰</button></div><button class="chat-action" onclick="sellerChatClose()">Закрыть</button></div></div>`;
+  const old=document.getElementById('v17SellerChat');if(old)old.remove();document.body.insertAdjacentHTML('beforeend',html);document.body.style.overflow='hidden';setTimeout(()=>{let e=document.getElementById('sellerChatMessages');if(e)e.scrollTop=e.scrollHeight},20);
+}
+function quickSeller(id,msg){
+  let c=state.chats[id];if(!c)return;c.msgs.push('Ты: '+msg);let p=phones.find(x=>x.id==id),replies=msg==='Есть торг?'?[`Продавец: Могу немного уступить. Предлагай цену.`,`Продавец: Если быстро заберёшь — договоримся.`]:[`Продавец: Да, ещё в продаже 👍`,`Продавец: Можем оформить сегодня.`];c.msgs.push(replies[(Number(id)+msg.length)%replies.length]);save();chatSeller(id);
+}
+function offer(id){
+  let p=phones.find(x=>x.id==id),c=state.chats[id],input=document.getElementById('sellerOffer'),v=Number(input&&input.value);if(!p||!c||!Number.isFinite(v)||v<=0)return alert('💬 Введи цену предложения.');
+  let asking=Number(c.asking)||v14BuyPrice(p),ratio=v/asking;c.msgs.push('Ты: Дам '+money(v));
+  if(v>state.balance){c.msgs.push('Продавец: У тебя денег не хватит 😅');save();return chatSeller(id)}
+  let agreed=null,reply='';
+  if(ratio>=.96){agreed=v;reply='Продавец: Договорились! Можешь забирать 👍';}
+  else if(ratio>=.88){agreed=Math.max(v,Math.round(asking*.93));reply='Продавец: Хорошо, отдам за '+money(agreed)+'.';}
+  else if(ratio>=.78){reply='Продавец: Слишком мало. Могу уступить до '+money(Math.round(asking*.88))+'.';}
+  else if(id%5===2){agreed=Math.round(asking*.86);reply='Продавец: Мне срочно нужны деньги. Давай '+money(agreed)+' и забирай.';}
+  else reply='Продавец: За такую цену не отдам 😭';
+  c.msgs.push(reply);c.dealPrice=agreed||null;save();chatSeller(id);
+}
+function acceptSellerDeal(id){
+  let p=phones.find(x=>x.id==id),c=state.chats[id],price=Number(c&&c.dealPrice);if(!p||!c||!price)return;if(state.balance<price)return alert('💸 Не хватает денег на эту цену.');
+  let item={uid:Date.now()+Math.random(),...p,baseMarket:p.market,buyCity:state.city,buyPrice:price,status:'Забрать у продавца',faults:null,repairsDone:[],lockStatus:p.lockStatus||'none',lockResolved:false,firmware:'Сток',firmwareDone:false,rooted:false,techScore:0};
+  state.balance-=price;state.spent+=price;state.inventory.push(item);state.orders.push({uid:item.uid,name:item.name,buyPrice:price,seller:p.seller,status:'Забрать у продавца'});state.rep++;c.msgs.push('Ты: Договорились 🤝');c.msgs.push('Продавец: Отлично. Забирай телефон.');c.dealPrice=null;save();sellerChatClose();render();setTimeout(()=>alert('🤝 Сделка с продавцом оформлена!\nЦена: '+money(price)+'\n📦 Теперь забери телефон в разделе «Доставка».'),30);
+}
+let listingSide='front';
+function openListing(id){let p=phones.find(x=>x.id===id);if(!p)return;listingSide='front';renderListing(p)}
+function renderListing(p){let price=cityBuyPrice(p);let currentMarket=cityMarketPrice(p);let visual=listingSide==='front'?phoneArt(p):listingSide==='back'?inspectionPhone(p,'back'): '<div class="side-phone" style="--p1:'+p.p1+';--p2:'+p.p2+'"></div>';document.getElementById('modalBody').innerHTML=`<div class="detail-hero"><div class="detail-stage">${visual}<div style="position:absolute;right:12px;bottom:10px;background:#070b12cc;color:#fff;padding:5px 9px;border-radius:10px;font-size:10px">1 / 3</div></div><div class="gallery-tabs"><button class="${listingSide==='front'?'active':''}" onclick="listingSide='front';renderListing(phones.find(x=>x.id===${p.id}))">Экран</button><button class="${listingSide==='back'?'active':''}" onclick="listingSide='back';renderListing(phones.find(x=>x.id===${p.id}))">Корпус</button><button class="${listingSide==='side'?'active':''}" onclick="listingSide='side';renderListing(phones.find(x=>x.id===${p.id}))">Торец</button></div><div class="detail-info"><h2 style="margin:0">${p.name}</h2><div class="meta">${p.brand} · ${p.color} · ${p.condition} · 👤 ${p.seller}</div><div class="detail-price">${money(price)}</div><div class="detail-specs"><div class="detail-spec"><span>Память</span><b>${p.storage||'256 ГБ'}</b></div><div class="detail-spec"><span>Батарея</span><b>${58+(p.id*9)%39}%</b></div><div class="detail-spec"><span>Состояние</span><b>${p.condition}</b></div><div class="detail-spec"><span>Потенциал</span><b class="good">+${money(Math.max(0,currentMarket-price))}</b></div></div><div class="detail-actions"><button class="action" onclick="chatSeller(${p.id})">💬 Написать</button><button class="action" onclick="inspect(${p.id})">🔍 Осмотреть</button><button class="action primary" onclick="buy(${p.id})">Купить</button></div></div></div>`;document.getElementById('modal').classList.add('open')}
+function getFaults(p){let seed=(p.id*31+state.day*7)%10;let list=[];if(seed%3===0)list.push('battery');if(seed%4===0)list.push('port');if(seed%5===0)list.push('camera');if(seed%7===0)list.push('water');if(p.id===6)list.push('screen');if(!list.length)list.push('body');return [...new Set(list)]}
+const faultNames={battery:['🔋 Батарея','Быстро разряжается','3000'],port:['🔌 Разъём','Разъём зарядки люфтит','2500'],camera:['📷 Камера','Пятно / артефакты на фото','4000'],water:['💧 Влага','Следы жидкости внутри','3500'],screen:['🖥️ Экран','Микротрещина / битый пиксель','5000'],body:['🧱 Корпус','Сильнее заявленного поцарапан','1800']};
+function faultText(fs){return '⚠️ '+fs.map(f=>faultNames[f][1]).join(', ')}
+let inspectionGame=null;
+const spotMap={
+  screen:{side:'front',x:50,y:48,clue:'glitch'},battery:{side:'front',x:58,y:67,clue:'glitch'},port:{side:'front',x:50,y:94,clue:'scratch'},camera:{side:'back',x:25,y:20,clue:'camera'},water:{side:'back',x:67,y:54,clue:'water'},body:{side:'back',x:78,y:73,clue:'scratch'}
+};
+function inspectionPhone(p,side){
+  let back=side==='back';
+  let brand=(p.brand||'').toLowerCase().replace(/[^a-z]+/g,'');
+  let apple=p.brand==='Apple', samsung=p.brand==='Samsung', pixel=p.brand==='Google', xiaomi=p.brand==='Xiaomi', honor=p.brand==='Honor', realme=p.brand==='Realme', vivo=p.brand==='Vivo';
+  let camClass=apple?'cam-apple':samsung?'cam-samsung':pixel?'cam-pixel':xiaomi?'cam-xiaomi':honor?'cam-honor':realme?'cam-realme':vivo?'cam-vivo':'cam-generic';
+  let lenses=apple?`<i class="ilens a"></i><i class="ilens b"></i><i class="ilens c"></i><i class="inspect-flash"></i><i class="inspect-sensor"></i>`:
+    samsung?`<i class="ilens a"></i><i class="ilens b"></i><i class="ilens c"></i><i class="inspect-flash"></i>`:
+    pixel?`<i class="ilens a"></i><i class="ilens b"></i><i class="inspect-flash"></i>`:
+    xiaomi?`<i class="ilens a"></i><i class="ilens b"></i><i class="ilens c"></i><i class="ilens d"></i><i class="inspect-flash"></i>`:
+    honor?`<i class="ilens a"></i><i class="ilens b"></i><i class="ilens c"></i><i class="inspect-flash"></i>`:
+    `<i class="ilens a"></i><i class="ilens b"></i><i class="ilens c"></i><i class="inspect-flash"></i>`;
+  let logo=apple?'':p.brand.toUpperCase();
+  return `<div class="inspect-phone ${back?'inspect-back':'inspect-front'} ${brand}" style="--p1:${p.p1};--p2:${p.p2}"><div class="inspect-body">${back?`<div class="inspect-cam ${camClass}">${lenses}</div><div class="inspect-logo ${apple?'apple-logo':''}">${logo}</div>`:`<div class="inspect-screen"><div class="status-icons">9:41　⌁　▮</div><div class="lock-icon">⌁</div><div class="inspect-date">Понедельник, 10 октября</div><div class="inspect-clock">9:41</div><div class="inspect-home"></div></div><div class="inspect-notch ${p.name.includes('14')||p.name.includes('15')||p.name.includes('13')?'dynamic':''}"></div>`}<div class="inspect-side"></div>${back?'':'<div class="inspect-port"></div><div class="inspect-speakers"></div>'}</div></div>`
+}
+function inspectionClue(f,side){let s=spotMap[f];if(!s||s.side!==side)return '';let cls=s.clue==='glitch'?'clue-glitch':s.clue==='camera'?'clue-camera':'clue-scratch';let extra=f==='water'?'box-shadow:0 0 12px #51e4ff99;background:#51e4ff88;width:10px;height:10px;border-radius:50%;':'';return `<span class="inspect-clue ${cls}" style="left:${s.x}%;top:${s.y}%;${extra}"></span>`}
+function inspect(id){let p=phones.find(x=>x.id===id);if(!p)return;let faults=getFaults(p);inspectionGame={id,side:'front',faults,found:[],attempts:4,started:Date.now(),seconds:28};renderInspection();}
+function renderInspection(){let g=inspectionGame;if(!g)return;let p=phones.find(x=>x.id===g.id);let visible=g.faults.filter(f=>spotMap[f]?.side===g.side);let allFound=g.found.length>=g.faults.length;let spots=['screen','battery','port','camera','water','body'].filter(f=>spotMap[f]?.side===g.side);let foundSet=new Set(g.found);let body=spots.map(f=>{let s=spotMap[f];let found=foundSet.has(f);return `<button class="inspect-spot ${found?'found':''}" style="left:${s.x}%;top:${s.y}%" onclick="tapInspection('${f}')">${found?'✓':''}</button>`}).join('');
+let dots=g.faults.map(f=>`<span class="inspect-dot ${foundSet.has(f)?'done':''}"></span>`).join('');
+let result=allFound?`<div class="inspect-result"><b>✅ Осмотр завершён</b><div class="meta" style="margin-top:5px">Ты нашёл все скрытые проблемы. Теперь можно торговаться жёстче.</div>${g.faults.map(f=>`<div class="foundline"><span>${faultNames[f][0]}</span><b class="bad">${faultNames[f][1]}</b></div>`).join('')}<button class="action primary" style="width:100%;margin-top:9px" onclick="closeModal();render()">Закончить осмотр</button><button class="action" style="width:100%;margin-top:7px" onclick="expertInspect(${g.id})">🧪 Экспертная диагностика — 500 ₽</button></div>`:'';
+let exhausted=g.attempts<=0&&!allFound;if(exhausted)result=`<div class="inspect-result"><b>💥 Осмотр окончен</b><div class="meta" style="margin-top:5px">Попытки закончились. Часть проблем осталась скрытой.</div><div class="foundline"><span>Найдено</span><b>${g.found.length}/${g.faults.length}</b></div><button class="action" style="width:100%;margin-top:9px" onclick="closeModal();render()">Закрыть</button><button class="action primary" style="width:100%;margin-top:7px" onclick="expertInspect(${g.id})">🧪 Экспертная диагностика — 500 ₽</button></div>`;
+let disabled=allFound||exhausted?'pointer-events:none;opacity:.7':'';
+document.getElementById('modalBody').innerHTML=`<div class="inspect-shell"><div class="inspect-top"><div><div class="inspect-title">Осмотр: ${p.name}, ${p.storage||'256 ГБ'}</div><div class="meta">Продавец: ${p.seller} · ${p.condition}</div></div><div class="inspect-time">${Math.max(0,g.seconds)} c</div></div><div class="inspect-tabs"><button class="${g.side==='front'?'active':''}" onclick="switchInspectionSide('front')">Экран</button><button class="${g.side==='back'?'active':''}" onclick="switchInspectionSide('back')">Корпус</button></div><div class="inspect-stage" style="${disabled}">${inspectionPhone(p,g.side)}${visible.map(f=>inspectionClue(f,g.side)).join('')}${body}</div><div class="inspect-progress">${dots}</div><div class="inspect-hint">Касайся подозрительных мест на телефоне. Ошибся — теряешь попытку. Осталось: <b>${g.attempts}</b></div>${result}</div>`;document.getElementById('modal').classList.add('open');startInspectionTimer();}
+let inspectionTimer=null;function startInspectionTimer(){clearInterval(inspectionTimer);inspectionTimer=setInterval(()=>{if(!inspectionGame){clearInterval(inspectionTimer);return}inspectionGame.seconds--;if(inspectionGame.seconds<=0){inspectionGame.attempts=0;clearInterval(inspectionTimer)}renderInspection()},1000)}
+function switchInspectionSide(side){if(!inspectionGame)return;inspectionGame.side=side;renderInspection()}
+function tapInspection(f){let g=inspectionGame;if(!g||g.attempts<=0||g.found.includes(f))return;if(!g.faults.includes(f)){g.attempts--;let btn=event?.currentTarget;if(btn){btn.classList.add('wrong');setTimeout(()=>btn.classList.remove('wrong'),300)}if(navigator.vibrate)navigator.vibrate(70);renderInspection();return}g.found.push(f);if(navigator.vibrate)navigator.vibrate([30,40,30]);renderInspection()}
+function expertInspect(id){clearInterval(inspectionTimer);if(state.balance<500)return alert('💸 Не хватает 500 ₽ на диагностику.');state.balance-=500;let p=phones.find(x=>x.id===id),faults=getFaults(p);document.getElementById('modalBody').innerHTML=`<h2>🧪 Экспертная диагностика</h2><div class="panel"><div class="item"><span>🔋 Батарея</span><b>${58+(p.id*9)%39}%</b></div><div class="item"><span>🖥️ Экран</span><b class="${faults.includes('screen')?'bad':'good'}">${faults.includes('screen')?'Есть проблема':'Оригинал, без дефектов'}</b></div><div class="item"><span>📷 Камера</span><b class="${faults.includes('camera')?'bad':'good'}">${faults.includes('camera')?'Есть проблема':'Исправна'}</b></div><div class="item"><span>💧 Влага</span><b class="${faults.includes('water')?'bad':'good'}">${faults.includes('water')?'Следы обнаружены':'Не обнаружена'}</b></div><div class="item"><span>🔧 Вскрытие</span><b class="${p.id%4===0?'warn':'good'}">${p.id%4===0?'Следы ремонта':'Не обнаружено'}</b></div></div><div class="notice">💡 Нашёл проблему сам — можно торговаться без оплаты диагностики. Эксперт нужен, если не уверен.</div><button class="action primary" style="width:100%;margin-top:8px" onclick="closeModal();render()">Закрыть</button>`;save();update()}
+function inspectOwned(uid){let x=state.inventory.find(a=>a.uid===uid);if(!x)return;if(!x.faults)x.faults=getFaults(x);let f=x.faults;document.getElementById('modalBody').innerHTML=`<h2>🔍 Диагностика — ${x.name}</h2><div class="panel">${f.map(k=>`<div class="item"><span>${faultNames[k][0]}</span><span class="bad">${faultNames[k][1]} · ремонт ${money(+faultNames[k][2])}</span></div>`).join('')}${!f.length?'<div class="item"><span>Состояние</span><b class="good">Проблем не найдено</b></div>':''}</div><div class="notice">Ремонт повышает шанс продать телефон дороже и защищает репутацию.</div><button class="action primary" style="width:100%;margin-top:8px" onclick="closeModal();render()">Закрыть</button>`;save();document.getElementById('modal').classList.add('open')}
+function renderRepair(){let el=repairList;state.inventory.forEach(x=>{x.repairsDone=x.repairsDone||[]});let xs=state.inventory.filter(x=>x.faults&&x.faults.some(f=>!x.repairsDone.includes(f)));if(!xs.length){el.innerHTML='<div class="empty">🔧 Мастерская свободна.<br>Сначала проведи диагностику телефона на складе.</div>';return}el.innerHTML=xs.map(x=>`<div class="panel"><div class="panelhead">${mini(x)}<div style="flex:1"><b>${x.name}</b><div class="meta">${faultText(x.faults)}</div></div><span class="badge">${x.repairsDone.length}/${x.faults.length}</span></div>${x.faults.map(f=>{let done=x.repairsDone.includes(f);return `<div class="item"><span>${faultNames[f][0]}<small>${faultNames[f][1]}</small></span>${done?'<span class="good">✓ Исправлено</span>':'<button class="action primary" onclick="repairFault('+x.uid+',\''+f+'\')">Ремонт '+money(+faultNames[f][2])+'</button>'}</div>`}).join('')}</div>`).join('')}
+function repairFault(uid,f){
+  let x=state.inventory.find(a=>String(a.uid)===String(uid)),cost=+faultNames[f][2];
+  if(!x)return;
+  if(state.balance<cost)return alert('💸 Не хватает денег на ремонт.');
+  startRepairGame(uid,f);
+}
+function startRepairGame(uid,f){
+  let x=state.inventory.find(a=>String(a.uid)===String(uid)); if(!x)return;
+  const targetMap={port:'🔧 Разъём',battery:'🔋 Батарея',camera:'📷 Камера',screen:'🖥️ Экран',speaker:'🔊 Динамики',water:'🔋 Батарея',body:'🖥️ Экран'}; repairGame={uid:String(uid),fault:f,cost:+faultNames[f][2],step:1,target:targetMap[f]||'🔧 Разъём',selected:null,needle:0,dir:1,bolts:[],score:0};
+  let parts=[['🔧 Разъём','Контакты'],['🔋 Батарея','Питание'],['📷 Камера','Модуль'],['🖥️ Экран','Шлейф']].sort(()=>Math.random()-.5);
+  repairGame.parts=parts;
+  renderRepairGame();
+}
+function renderRepairGame(){
+  if(!repairGame)return;
+  let g=repairGame;
+  let title=g.step===1?'Этап 1 — Найди неисправный узел':g.step===2?'Этап 2 — Поймай момент пайки':'Этап 3 — Закрути крепления';
+  let body='';
+  if(g.step===1){body=`<div class="repair-score">Найди: <b>${g.target}</b> · Ошибки: ${g.errors||0}/2</div><div class="repair-parts">${g.parts.map((p,i)=>`<button class="partbtn" onclick="pickRepairPart(${i})"><b>${p[0]}</b><small>${p[1]}</small></button>`).join('')}</div>`}
+  if(g.step===2){body=`<div class="repair-score">Нажми «ПАЯТЬ», когда белая полоска попадёт в зелёную зону.</div><div class="timing"><div class="goodzone"></div><div class="needle" id="needle"></div></div><button class="action primary" style="width:100%;font-size:16px" onclick="hitRepairTiming()">⚡ ПАЯТЬ</button>`;}
+  if(g.step===3){let order=g.bolts.join(' → ');body=`<div class="repair-score">Закрути 3 болта в правильном порядке: <b>${g.order.join(' → ')}</b></div><div class="bolts">${[1,2,3].map(n=>`<button class="bolt ${g.bolts.includes(n)?'done':''}" ${g.bolts.includes(n)?'disabled':''} onclick="turnBolt(${n})">🔩 ${n}</button>`).join('')}</div><div class="repair-score">Сделано: ${order||'—'}</div>`;}
+  document.getElementById('modalBody').innerHTML=`<h2>🛠️ Ремонтная мини-игра</h2><div class="notice">${xLabel(g.fault)} · стоимость ремонта ${money(g.cost)}</div><div class="repair-game"><div class="repair-hud"><span class="rarity">🔧 Мастерская</span><b>${title}</b></div>${body}</div><button class="action" style="width:100%;margin-top:9px" onclick="closeModal()">Выйти</button>`;
+  document.getElementById('modal').classList.add('open');
+  if(g.step===2)animateNeedle();
+}
+function xLabel(f){return faultNames[f]?faultNames[f][0]+' '+faultNames[f][1]:'Телефон'}
+function pickRepairPart(i){let g=repairGame;if(!g)return;let chosen=g.parts[i][0];if(chosen===g.target){g.score+=35;g.step=2;renderRepairGame();}else{g.errors=(g.errors||0)+1;if(g.errors>=2){alert('💥 Ошибка! Ты сорвал контакт. Мини-игру придётся начать заново.');g.errors=0;g.parts.sort(()=>Math.random()-.5);}renderRepairGame();}}
+function animateNeedle(){let g=repairGame;if(!g||g.step!==2)return;g.needle=(g.needle||0)+g.dir*2.3;if(g.needle>=100){g.needle=100;g.dir=-1}if(g.needle<=0){g.needle=0;g.dir=1}let n=document.getElementById('needle');if(n)n.style.left=g.needle+'%';requestAnimationFrame(animateNeedle)}
+function hitRepairTiming(){let g=repairGame;if(!g||g.step!==2)return;let ok=g.needle>=38&&g.needle<=62;if(ok){g.score+=35;g.step=3;g.order=[1,2,3].sort(()=>Math.random()-.5);g.bolts=[];renderRepairGame();}else{g.score=Math.max(0,g.score-10);alert('⚡ Мимо! Нужна зелёная зона. Попробуй ещё раз.');}}
+function turnBolt(n){let g=repairGame;if(!g||g.step!==3)return;if(n!==g.order[g.bolts.length]){alert('🔩 Неверный порядок! Крепление перекосилось.');g.score=Math.max(0,g.score-8);return;}g.bolts.push(n);g.score+=10;if(g.bolts.length===3)finishRepairGame();else renderRepairGame()}
+function finishRepairGame(){let g=repairGame,x=state.inventory.find(a=>String(a.uid)===String(g.uid));if(!x)return;let discount=g.score>=80?0.1:g.score>=65?0.05:0;let finalCost=Math.round(g.cost*(1-discount));if(state.balance<finalCost){repairGame=null;closeModal();return alert('💸 Пока проходил ремонт, денег стало недостаточно.');}state.balance-=finalCost;state.repairs++;x.repairsDone=x.repairsDone||[];if(!x.repairsDone.includes(g.fault))x.repairsDone.push(g.fault);x.market+=Math.round(g.cost*.75);if(x.stateTag==='broken' && v14FaultList(x).length===0){x.stateTag='good';x.condition='Хорошее';x.market=Math.round(x.baseMarket||x.market);};state.rep+=g.score>=80?2:1;save();repairGame=null;closeModal();render();alert(`🔧 РЕМОНТ ЗАВЕРШЁН!
+Результат: ${g.score}/100
+Стоимость: ${money(finalCost)}
+Телефон стал дороже на ${money(Math.round(g.cost*.75))}.`)}
+function caseName(k){return ({basic:'Силикон',carbon:'Карбон',clear:'Прозрачный MagSafe',leather:'Кожа',armor:'Armor Pro'})[k]||k}
+const caseData={basic:{cost:250,bonus:.01,icon:'🟦'},carbon:{cost:700,bonus:.025,icon:'⬛'},clear:{cost:1000,bonus:.035,icon:'🔷'},leather:{cost:1500,bonus:.05,icon:'🟫'},armor:{cost:2500,bonus:.07,icon:'🛡️'}};
+function buyCase(k){let d=caseData[k];if(state.balance<d.cost)return alert('💸 Не хватает денег на чехол.');state.balance-=d.cost;state.cases[k]=(state.cases[k]||0)+1;save();render();alert('📱 Чехол куплен: '+caseName(k));}
+function attachCase(uid,k){let x=state.inventory.find(a=>String(a.uid)===String(uid)),d=caseData[k];if(!x||!state.cases[k])return;state.cases[k]--;x.case=k;x.caseBonus=d.bonus;save();closeModal();render();alert('🛡️ Чехол установлен! К цене продажи добавится '+(d.bonus*100).toFixed(1)+'%.')}
+function openCaseMenu(uid){let x=state.inventory.find(a=>String(a.uid)===String(uid));if(!x)return;document.getElementById('modalBody').innerHTML=`<h2>🛡️ Чехол — ${x.name}</h2><div class="notice">Чехол повышает привлекательность объявления и даёт бонус к цене продажи.</div><div class="casegrid">${Object.entries(caseData).map(([k,d])=>`<div class="casecard"><div class="casevisual"><div class="casephone" style="background:linear-gradient(145deg,${k==='carbon'?'#222':k==='clear'?'#78cfff':k==='leather'?'#8a5b3b':k==='armor'?'#6b7280':'#4e78b8'},#10151d)"></div></div><b>${caseName(k)}</b><div class="meta">+${d.bonus*100}% к цене · ${money(d.cost)}</div><div class="meta">На складе: ${state.cases[k]||0}</div><button class="action primary smallbtn" onclick="${(state.cases[k]||0)?`attachCase(${uid},'${k}')`:`buyCase('${k}')`}">${(state.cases[k]||0)?'Установить':'Купить'}</button></div>`).join('')}</div>`;document.getElementById('modal').classList.add('open')}
+function renderCases(){return Object.entries(caseData).map(([k,d])=>`<div class="casecard"><div class="casevisual"><div class="casephone" style="background:linear-gradient(145deg,${k==='carbon'?'#222':k==='clear'?'#78cfff':k==='leather'?'#8a5b3b':k==='armor'?'#6b7280':'#4e78b8'},#10151d)"></div></div><b>${caseName(k)}</b><div class="meta">+${d.bonus*100}% к продаже · ${money(d.cost)}</div><div class="meta">В наличии: ${state.cases[k]||0}</div><button class="action primary smallbtn" onclick="buyCase('${k}')">Купить</button></div>`).join('')}
+function renderShop(){let costs=[0,25000,65000,150000,350000];let names=['Гараж','Мини-магазин','Нормальный магазин','Сеть точек','Империя'];let desc=['Стартовый гараж.','Больше покупателей и +2.5% к продажам.','Лучший поток клиентов и +5% к продажам.','Сильный бренд и +7.5%.','Ты уже не перекуп. Ты рынок.'];let lvl=state.store;shopList.innerHTML=`<div class="hero"><b>🏬 ${names[lvl]}</b><br><span>${desc[lvl]}</span></div><div class="store">${names.map((n,i)=>`<div class="storebox"><h3>${i<=lvl?'✅':'🔒'} ${n}</h3><div class="meta">${i===0?'Уже доступно':i>lvl?'Открывается после покупки':'Текущий уровень'}</div><button class="action ${i===lvl?'primary':''} smallbtn" ${i<=lvl?'disabled':''} onclick="upgradeShop(${i})">${i<=lvl?'Установлено':money(costs[i])}</button></div>`).join('')}</div><div class="panel"><b>🛡️ Магазин чехлов</b><div class="casegrid">${renderCases()}</div></div><div class="panel"><b>Бонус магазина</b><div class="item"><span>К прибыли от продаж</span><b class="good">+${(lvl*2.5).toFixed(1)}%</b></div><div class="item"><span>Репутация за сделки</span><b>+${lvl}</b></div></div>`}
+function upgradeShop(i){let costs=[0,25000,65000,150000,350000];if(i!==state.store+1)return alert('Покупай уровни по порядку.');if(state.balance<costs[i])return alert('💸 Пока не хватает денег.');state.balance-=costs[i];state.store=i;state.rep+=2;save();render();alert('🏬 Магазин улучшен! Теперь бизнес приносит больше.');}
+const achievementDefs=[['first','📱','Первый телефон','Купи свой первый смартфон.'],['five','🔥','Пять продаж','Продай 5 телефонов.'],['repair','🔧','Мастер ремонта','Сделай первый ремонт.'],['profit','💰','Жирная маржа','Заработай 10 000 ₽ на одной сделке.'],['rep','⭐','Уважаемый','Получи 20 репутации.'],['shop','🏬','Свой бизнес','Открой магазин 2 уровня.']];
+function renderAchievements(){achievements.innerHTML=achievementDefs.map(a=>`<div class="achievement"><div class="ico">${a[1]}</div><div><b>${state.ach[a[0]]?'🏆 ':''}${a[2]}</b><div class="meta">${a[3]}</div></div></div>`).join('')}
+function checkAchievements(){if(state.sold>=1)state.ach.first=1;if(state.sold>=5)state.ach.five=1;if(state.repairs>=1)state.ach.repair=1;if(state.best>=10000)state.ach.profit=1;if(state.rep>=20)state.ach.rep=1;if(state.store>=1)state.ach.shop=1}
+function maybeEvent(kind){if(Math.random()>.42)return;let events=[{t:'СРОЧНАЯ ПРОДАЖА',d:'Продавец внезапно снизил цену на популярный телефон. Успей забрать, пока его не купили.',bonus:0},{t:'ПИК СПРОСА',d:'Сегодня покупатели готовы платить чуть больше за флагманские модели.',bonus:1},{t:'ПЛОХИЕ НОВОСТИ',d:'На рынке появились слухи о проблемах одной модели. Её цена временно просела.',bonus:-1}];state.event=events[Math.floor(Math.random()*events.length)];state.events++;}
+function renderEvent(){eventBox.innerHTML=state.event?`<div class="event"><b>⚡ ${state.event.t}</b><div class="meta" style="margin-top:5px">${state.event.d}</div><button class="action" style="margin-top:9px" onclick="state.event=null;save();renderMarket()">Понятно</button></div>`:''}
+function render(){update();renderMarket();renderInventory();renderOrders();renderAds();renderChats();renderRepair();renderShop();checkAchievements();update()}
+function page(id,b){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function closeModal(){modal.classList.remove('open');inspectionGame=null;clearInterval(inspectionTimer)}
+modal.onclick=e=>{if(e.target.id==='modal')closeModal()}
+function resetGame(){if(confirm('Начать карьеру заново? Все сохранения будут удалены.')){localStorage.removeItem('perekupPRO');location.reload()}}
+
+/* ================= v12 FIX PACK ================= */
+state.repairs=state.repairs||0;
+state.buyerChats=state.buyerChats||{};
+state.chats=state.chats||{};
+state.ads=state.ads||[];
+state.inventory=state.inventory||[];
+state.orders=state.orders||[];
+
+function taxRate(profit){
+  profit=Math.max(0,Number(profit)||0);
+  if(profit<5000)return .05;
+  if(profit<15000)return .10;
+  if(profit<30000)return .15;
+  return .20;
+}
+function taxText(profit){let r=taxRate(profit);return `🧾 Налог ${(r*100).toFixed(0)}% · ${money(Math.round(Math.max(0,profit)*r))}`}
+function saleNet(sell,buy){
+  sell=Math.max(0,Number(sell)||0);buy=Math.max(0,Number(buy)||0);
+  const profit=Math.max(0,sell-buy);
+  const tax=Math.round(profit*taxRate(profit));
+  return {sell,buy,profit,tax,net:sell-tax};
+}
+function inventoryActions(uid){
+  const x=state.inventory.find(a=>String(a.uid)===String(uid));
+  if(!x)return;
+  const canWork=x.status==='Готов к продаже';
+  const faultCount=(x.faults||[]).length;
+  document.getElementById('modalBody').innerHTML=`
+    <h2>📱 ${x.name}</h2>
+    <div class="panel"><div class="panelhead">${mini(x)}<div style="flex:1"><b>${x.name}</b><small>Куплен за ${money(x.buyPrice)} · ${x.status}</small></div></div>
+      <div class="item"><span>📈 Рынок сейчас</span><b>${money(cityMarketPrice(x))}</b></div>
+      <div class="item"><span>🛠️ Диагностика</span><b>${faultCount?faultText(x.faults):'Не проведена'}</b></div>
+      <div class="item"><span>🛡️ Чехол</span><b>${x.case?caseName(x.case):'Нет'}</b></div>
+    </div>
+    ${x.status!=='Готов к продаже'?`<div class="notice">📍 Сначала забери телефон у продавца во вкладке «Нужно получить».</div>`:''}
+    <div class="row" style="margin-top:9px">
+      <button class="action" ${canWork?'':'disabled'} onclick="inspectOwned(${uid})">🔍 Диагностика</button>
+      <button class="action" ${canWork?'':'disabled'} onclick="openCaseMenu(${uid})">🛡️ Чехол</button>
+    </div>
+    <button class="action primary" style="width:100%;margin-top:8px" ${canWork?'':'disabled'} onclick="createAd(${uid})">📢 Выставить на продажу</button>
+    ${faultCount?`<button class="action" style="width:100%;margin-top:8px" ${canWork?'':'disabled'} onclick="page('repair',document.querySelectorAll('#nav button')[4]);closeModal()">🔧 Открыть ремонт</button>`:''}
+  `;
+  document.getElementById('modal').classList.add('open');
+}
+function chatNowScroll(){const e=document.getElementById('chatMessages');if(e)e.scrollTop=e.scrollHeight}
+function chatNameFromAd(a){if(a&&a.buyerName)return a.buyerName;const names=['Дмитрий','Максим','Артём','Илья','Роман','Никита'];return names[Math.abs(Math.floor(Number(a&&a.uid)||0))%names.length]}
+function buyerChatText(msg){return String(msg||'').replace(/^Покупатель:\s*/,'').replace(/^Ты:\s*/,'')}
+function buyerBubbleHtml(msg){let me=String(msg||'').startsWith('Ты:');return `<div class="chat-bubble ${me?'me':''}">${buyerChatText(msg)}<span class="chat-time">сейчас</span></div>`}
+function closeChatScreen(){const e=document.getElementById('v12ChatScreen');if(e)e.remove();document.body.style.overflow='';}
+function buyerSell(uid){buyerDecision(uid,'yes')}
+function buyerNo(uid){buyerDecision(uid,'no')}
+function buyerCounter(uid){buyerDecision(uid,'counter')}
+function buyerFinal(uid){buyerDecision(uid,'final')}
+function buyerQuick(uid,type){
+  const a=state.ads.find(x=>String(x.uid)===String(uid));
+  const c=state.buyerChats[uid]||state.buyerChats[String(uid)];
+  if(!a||!c)return;
+  if(type==='hello'){
+    c.msgs.push('Ты: Здравствуйте! Да, ещё продаётся.');
+    c.msgs.push('Покупатель: Отлично, готов забрать сегодня 👍');
+  }
+  save();openBuyer(uid);
+}
+function openBuyer(uid){
+  const a=state.ads.find(x=>String(x.uid)===String(uid));
+  const c=state.buyerChats[uid]||state.buyerChats[String(uid)];
+  if(!a||!c)return;
+  state.unread=0;save();
+  const existing=document.getElementById('v12ChatScreen');if(existing)existing.remove();
+  const p=phones.find(x=>x.name===a.name)||a;
+  const initial=(chatNameFromAd(a)[0]||'Д').toUpperCase();
+  const offer=Math.max(0,Number(a.offer)||Number(a.price)||0);
+  const html=`<div id="v12ChatScreen" class="chat-screen">
+    <div class="chat-head"><button class="chat-back" onclick="closeChatScreen()">‹</button><div class="chat-avatar">${initial}</div><div class="chat-person"><b>${chatNameFromAd(a)}</b><span>Покупатель</span></div></div>
+    <div class="chat-product"><div class="chat-product-art">${mini(p)}</div><div class="chat-product-info"><div class="chat-product-price">Ваша цена: ${money(a.price)}</div><div class="chat-product-name">${a.name}, ${a.storage||'256 ГБ'}</div></div></div>
+    <div id="chatMessages" class="chat-messages">${c.msgs.map(buyerBubbleHtml).join('')}</div>
+    <div class="chat-actions">
+      <button class="chat-action" onclick="buyerQuick(${uid},'hello')">Здравствуйте! Да, ещё продаётся.</button>
+      <button class="chat-action primary" onclick="buyerSell(${uid})">Согласен, продам за ${money(offer)}</button>
+      <button class="chat-action" onclick="buyerCounter(${uid})">Договорились за ${money(Math.round(offer*1.03))}</button>
+      <button class="chat-action" onclick="buyerFinal(${uid})">Цена окончательная — ${money(a.price)}</button>
+      <button class="chat-action" onclick="buyerNo(${uid})">Нет, спасибо</button>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  document.body.style.overflow='hidden';
+  setTimeout(chatNowScroll,20);
+}
+function finishBuyerSale(uid, finalPrice, extraMsg){
+  if(window.__saleBusy)return false; window.__saleBusy=true;
+  const a=state.ads.find(x=>String(x.uid)===String(uid));
+  const c=state.buyerChats[uid]||state.buyerChats[String(uid)];
+  if(!a||!c){window.__saleBusy=false;return false;}
+  const sell=Math.max(0,Math.round(Number(finalPrice)||0));
+  if(!sell){window.__saleBusy=false;return false;}
+  a.offer=sell;
+  if(extraMsg)c.msgs.push(extraMsg);
+  c.msgs.push('Ты: Договорились! Оформляем сделку 🤝');
+  c.msgs.push('Покупатель: Отлично! Забираю телефон 👍');
+  const sale=saleNet(sell,a.buyPrice);
+  state.balance+=sale.net;
+  state.earned+=sale.net;
+  state.taxPaid=(state.taxPaid||0)+sale.tax;
+  state.best=Math.max(state.best,sale.profit);
+  state.sold++;
+  state.rep+=3;
+  state.sales.unshift({name:a.name,sell:sale.sell,buyPrice:a.buyPrice,profit:sale.profit,tax:sale.tax,time:new Date().toLocaleString('ru-RU')});
+  state.day++;
+  state.ads=state.ads.filter(x=>String(x.uid)!==String(uid));
+  const idx=state.inventory.findIndex(x=>String(x.uid)===String(uid));
+  if(idx>=0)state.inventory.splice(idx,1);
+  delete state.buyerChats[uid];
+  delete state.buyerChats[String(uid)];
+  state.unread=Math.max(0,state.unread-1);
+  maybeEvent('sell');
+  save();
+  closeChatScreen();
+  render();
+  setTimeout(()=>alert(`🔥 Сделка согласована и завершена!\nЦена: ${money(sale.sell)}\n${taxText(sale.profit)}\nНа руки: ${money(sale.net)}\nЧистая прибыль: ${money(sale.profit-sale.tax)}`),30);
+  window.__saleBusy=false;
+  return true;
+}
+function buyerDecision(uid,type){
+  const a=state.ads.find(x=>String(x.uid)===String(uid));
+  const c=state.buyerChats[uid]||state.buyerChats[String(uid)];
+  if(!a||!c)return;
+  const currentOffer=Math.max(0,Number(a.offer)||Number(a.price)||0);
+  if(type==='no'){
+    c.msgs.push('Ты: Нет, спасибо.');
+    a.offer=null;
+    state.unread=Math.max(0,state.unread-1);
+    delete state.buyerChats[uid];
+    delete state.buyerChats[String(uid)];
+    save();closeChatScreen();render();return;
+  }
+  if(type==='counter'){
+    const v=Math.round(currentOffer*1.03);
+    c.msgs.push('Ты: Могу уступить до '+money(v)+'.');
+    c.msgs.push('Покупатель: '+money(v)+'? Хорошо, договорились 👍');
+    finishBuyerSale(uid,v,null);
+    return;
+  }
+  if(type==='final'){
+    const v=Math.max(1,Math.round(Number(a.price)||currentOffer));
+    c.msgs.push('Ты: Цена окончательная, '+money(v)+'.');
+    c.msgs.push('Покупатель: Хорошо, беру за '+money(v)+' 👍');
+    finishBuyerSale(uid,v,null);
+    return;
+  }
+  finishBuyerSale(uid,currentOffer,null);
+}
+function renderChats(){
+  let el=chatsList;if(!el)return;let html='';
+  Object.keys(state.chats).forEach(k=>{const c=state.chats[k];if(!c||!c.msgs)return;html+=`<div class="item"><div><b>Продавец · ${c.name}</b><small>${c.msgs[c.msgs.length-1]}</small></div><button class="action" onclick="chatSeller(${k})">Открыть</button></div>`});
+  Object.keys(state.buyerChats).forEach(k=>{const c=state.buyerChats[k];const a=state.ads.find(x=>String(x.uid)===String(k));if(!c||!a)return;html+=`<div class="item"><div><b>Покупатель · ${c.name}</b><small>${c.msgs[c.msgs.length-1]}</small></div><button class="action primary" onclick="openBuyer(${k})">Открыть</button></div>`});
+  el.innerHTML=html||'<div class="empty">💬 Пока тишина.<br>Открывай торг на рынке или жди покупателей.</div>';
+}
+/* Remove duplicated market headline introduced by an earlier UI pass. */
+function renderMarket(){marketGrid.innerHTML=phones.map(cardPhone).join('');renderEvent();}
+
+/* ================= v14 CATALOG + SIMULATED iCLOUD GAME ================= */
+(function(){
+  const extra=[
+    ['iPhone 16 Pro Max','Apple',69000,83000,'Идеальное','Андрей','ios','Титан',' #d9dde3','#30343b','tri','ideal','none'],
+    ['iPhone 16 Pro','Apple',61000,74000,'Заблокирован iCloud','Михаил','ios','Титан',' #bfc5cf','#30343b','tri','locked','icloud'],
+    ['iPhone 16','Apple',52000,65000,'Хорошее','Олег','ios','Чёрный','#30343b','#11151a','dual','good','none'],
+    ['iPhone 15 Pro','Apple',47000,59000,'Сломан','Павел','ios','Синий','#4c79c8','#12233f','tri','broken','none'],
+    ['iPhone 15','Apple',39000,50000,'Идеальное','Денис','ios','Розовый','#dca8b8','#3a2630','dual','ideal','none'],
+    ['iPhone 14 Plus','Apple',33000,42000,'Заблокирован iCloud','Виктор','ios','Синий','#4777bd','#10243e','dual','locked','icloud'],
+    ['iPhone 13 Pro Max','Apple',36000,47000,'Сломан','Роман','ios','Графит','#4b515c','#171a20','tri','broken','none'],
+    ['iPhone 13 mini','Apple',22000,29000,'Есть царапины','Иван','ios','Зелёный','#6f9c76','#203226','dual','scratched','none'],
+    ['iPhone 12 Pro Max','Apple',25000,34000,'Заблокирован iCloud','Дмитрий','ios','Золотой','#d9c39b','#403828','tri','locked','icloud'],
+    ['iPhone 12','Apple',18000,24000,'Сломан','Артур','ios','Синий','#5479a7','#18273b','dual','broken','none'],
+    ['iPhone SE 2022','Apple',15000,20500,'Идеальное','Сергей','ios','Белый','#dfe2e6','#30343a','single','ideal','none'],
+    ['Samsung Galaxy S25 Ultra','Samsung',62000,76000,'Идеальное','Роман','android','Серый','#7d858f','#20242b','quad','ideal','none'],
+    ['Samsung Galaxy S25+','Samsung',51000,64000,'Хорошее','Алексей','android','Синий','#537aa7','#142334','tri','good','none'],
+    ['Samsung Galaxy S24+','Samsung',39000,50000,'Сломан','Тимур','android','Чёрный','#303640','#11151a','tri','broken','none'],
+    ['Samsung Galaxy S23 Ultra','Samsung',35000,47000,'Заблокирован','Кирилл','android','Зелёный','#537764','#17251e','quad','locked','activation'],
+    ['Samsung Galaxy Z Fold6','Samsung',72000,89000,'Идеальное','Макс','android','Серебро','#aab0b7','#292d33','tri','ideal','none'],
+    ['Samsung Galaxy Z Flip6','Samsung',43000,56000,'Сломан','Егор','android','Фиолетовый','#8a75a9','#292039','dual','broken','none'],
+    ['Samsung Galaxy A56','Samsung',27000,34000,'Идеальное','Антон','android','Графит','#59616c','#171b21','tri','ideal','none'],
+    ['Google Pixel 9 Pro XL','Google',56000,69000,'Идеальное','Егор','android','Обсидиан','#5f6977','#151a21','tri','ideal','none'],
+    ['Google Pixel 9','Google',41000,52000,'Хорошее','Никита','android','Фарфор','#d6d7d9','#34383c','dual','good','none'],
+    ['Google Pixel 8 Pro','Google',36000,47000,'Сломан','Илья','android','Синий','#57789c','#172331','tri','broken','none'],
+    ['Xiaomi 15 Ultra','Xiaomi',58000,72000,'Идеальное','Денис','android','Белый','#e0e1e2','#37393b','quad','ideal','none'],
+    ['Xiaomi 15','Xiaomi',39000,50000,'Хорошее','Влад','android','Чёрный','#34383d','#121518','tri','good','none'],
+    ['Xiaomi 14T Pro','Xiaomi',33000,43000,'Сломан','Максим','android','Серый','#737b84','#24282d','tri','broken','none'],
+    ['Redmi Note 14 Pro+','Xiaomi',24000,31500,'Идеальное','Дима','android','Фиолетовый','#7f70a0','#29233a','tri','ideal','none'],
+    ['Redmi Note 13 Pro','Xiaomi',18000,24000,'Сломан','Стас','android','Чёрный','#30343a','#101316','tri','broken','none'],
+    ['POCO F6 Pro','Xiaomi',26000,34000,'Хорошее','Вадим','android','Белый','#d9dadd','#36383b','tri','good','none'],
+    ['POCO F7 Ultra','Xiaomi',43000,56000,'Идеальное','Рустам','android','Чёрный','#2e3238','#0e1115','tri','ideal','none'],
+    ['OnePlus 13','OnePlus',48000,61000,'Идеальное','Артём','android','Чёрный','#30343a','#111418','tri','ideal','none'],
+    ['OnePlus 12','OnePlus',36000,47000,'Сломан','Лев','android','Зелёный','#55705f','#17221b','tri','broken','none'],
+    ['Honor Magic7 Pro','Honor',52000,65000,'Идеальное','Тимур','android','Чёрный','#2e343c','#101419','tri','ideal','none'],
+    ['Honor 400 Pro','Honor',30000,39000,'Хорошее','Марат','android','Серебро','#b7bcc2','#2d3136','tri','good','none'],
+    ['Vivo X200 Pro','Vivo',51000,64000,'Идеальное','Никита','android','Синий','#4d6d91','#162335','tri','ideal','none'],
+    ['Vivo V50 Pro','Vivo',29000,38000,'Сломан','Ренат','android','Чёрный','#30353b','#101418','dual','broken','none'],
+    ['OPPO Find X8 Pro','OPPO',50000,63000,'Идеальное','Азамат','android','Белый','#d9dbdd','#36383a','quad','ideal','none'],
+    ['Realme GT 7 Pro','Realme',39000,50000,'Хорошее','Саша','android','Серый','#69717a','#20252a','tri','good','none'],
+    ['Nothing Phone (3)','Nothing',36000,47000,'Идеальное','Игорь','android','Белый','#dedede','#353535','dual','ideal','none'],
+    ['Motorola Edge 50 Ultra','Motorola',33000,42000,'Сломан','Денис','android','Коричневый','#8c6d57','#30251f','tri','broken','none'],
+    ['Sony Xperia 1 VI','Sony',40000,51000,'Хорошее','Роман','android','Чёрный','#25282d','#0d0f12','tri','good','none'],
+    ['ASUS ROG Phone 9','ASUS',45000,58000,'Идеальное','Влад','android','Чёрный','#20262e','#0b0e12','tri','ideal','none'],
+    ['Huawei Pura 70 Pro','Huawei',39000,50000,'Сломан','Фарид','android','Белый','#e0e1e2','#3a3b3c','tri','broken','none']
+  ];
+  const start=phones.length;
+  extra.forEach((x,j)=>phones.push({id:start+j,name:x[0],brand:x[1],price:x[2],market:x[3],condition:x[4],seller:x[5],type:x[6],color:x[7],p1:x[8].trim(),p2:x[9],cams:x[10],stateTag:x[11],lockStatus:x[12]}));
+  phones.forEach((p,i)=>{
+    p.stateTag=p.stateTag||((i%13===0)?'ideal':(i%11===0?'broken':'good'));
+    if(!p.lockStatus && p.brand==='Apple' && i%4===0)p.lockStatus='icloud';
+    if(!p.lockStatus)p.lockStatus='none';
+    if(!p.condition || p.condition==='Среднее')p.condition=p.stateTag==='ideal'?'Идеальное':p.stateTag==='broken'?'Сломан':p.condition||'Хорошее';
+    p.storage=p.storage||([64,128,256,512][i%4])+' ГБ';
+  });
+})();
+
+const v14Faults={battery:['🔋 Батарея','Быстро разряжается','3000'],port:['🔌 Разъём','Разъём зарядки повреждён','2500'],camera:['📷 Камера','Артефакты на фото','4000'],water:['💧 Влага','Следы жидкости внутри','3500'],screen:['🖥️ Экран','Трещина / битые пиксели','5000'],body:['🧱 Корпус','Сильные повреждения корпуса','1800']};
+function v14FaultList(p){
+  if(p.stateTag==='ideal')return [];
+  let f=[];
+  if(p.stateTag==='broken'){let all=['battery','port','screen','camera','body'];let n=2+(p.id%3);f=all.slice(0,n);}
+  else f=getFaults(p).filter(x=>x!=='body' || p.stateTag==='scratched');
+  const done=p.repairsDone||[];
+  return f.filter(k=>!done.includes(k));
+}
+function v14Badge(p){
+  let h='';
+  if(p.lockStatus==='icloud')h+='<span class="v14-badge lock">🔒 iCloud заблокирован</span>';
+  else if(p.lockStatus==='activation')h+='<span class="v14-badge lock">🔒 Активация заблокирована</span>';
+  if(p.stateTag==='broken')h+='<span class="v14-badge broken">🔧 Сломан</span>';
+  else if(p.stateTag==='ideal')h+='<span class="v14-badge ideal">✨ Идеальное</span>';
+  else h+='<span class="v14-badge good">✓ Рабочий</span>';
+  return '<div class="v14-badges">'+h+'</div>';
+}
+function v14BuyPrice(p){let v=cityBuyPrice(p);if(p.stateTag==='broken'){const repaired=(p.repairsDone||[]).length;const faults=(v14FaultList(p)||[]).length;const severity=faults?Math.max(.38,.58-(faults-1)*.06):.58;v=Math.round(v*severity);if(repaired)v=Math.round(v*(1+Math.min(.18,repaired*.06)));}if(p.lockStatus==='icloud' && !p.lockResolved)v=Math.round(v*.68);return v}
+function v14Value(p){let v=cityMarketPrice(p);if(p.lockStatus==='icloud' && !p.lockResolved)v=Math.round(v*.72);if(p.lockResolved)v=Math.round(v*1.10);if(p.stateTag==='ideal')v=Math.round(v*1.04);if(p.stateTag==='broken'){const repaired=(p.repairsDone||[]).length;const total=(['battery','port','screen','camera','body'].filter(k=>(v14Faults[k])).length);const ratio=Math.min(1,repaired/Math.max(1,total));v=Math.round(v*(.58+.42*ratio));}return v}
+const v19ValueBase=v14Value; function v20Value(p){let v=v19ValueBase(p);if(p.firmwareDone)v=Math.round(v*1.035);if(p.rooted)v=Math.round(v*1.055);return v} v14Value=v20Value;
+function v14Card(p){
+  let f=marketFilter==='hot'?(v14Value(p)-cityBuyPrice(p))>6000:true;if(marketFilter==='ios')f=p.type==='ios';if(marketFilter==='android')f=p.type==='android';if(!f)return '';
+  let price=v14BuyPrice(p), market=v14Value(p);
+  return `<article class="card" onclick="openListing(${p.id})">${phoneArt(p)}<div class="spec"><div><div class="name">${p.name}</div><div class="meta">${p.brand} · ${p.color} · ${p.condition}</div></div><span class="tag">${p.type==='ios'?'iOS':'Android'}</span></div>${v14Badge(p)}<div class="price">${money(price)}</div><div class="profit">Рынок ${money(market)} · потенциал +${money(Math.max(0,market-price))}</div><div class="meta">👤 ${p.seller} · ${sellerMood(p.id)}</div><div class="row"><button class="buy" onclick="event.stopPropagation();buy(${p.id})">Купить</button><button class="write" onclick="event.stopPropagation();chatSeller(${p.id})">💬 Торг</button></div><button class="action inspect" onclick="event.stopPropagation();inspect(${p.id})">🔍 Осмотреть</button></article>`;
+}
+function renderMarket(){marketGrid.innerHTML=phones.map(v14Card).join('');renderEvent();document.querySelectorAll('#market .hero').forEach(x=>{if(!x.dataset.v14){x.dataset.v14='1';x.insertAdjacentHTML('beforeend',`<div class="v14-catalog-head"><b>📱 Каталог: ${phones.length} моделей</b><span class="v14-catalog-count">Есть идеальные, сломанные и заблокированные</span></div>`);}})}
+
+function v14Buy(id){
+  let p=phones.find(x=>x.id===id);if(!p)return;let price=v14BuyPrice(p);if(state.balance<price)return alert('💸 Не хватает денег.');
+  state.balance-=price;state.spent+=price;
+  let item={uid:Date.now()+Math.random(),...p,baseMarket:p.market,buyCity:state.city,buyPrice:price,status:'Забрать у продавца',faults:null,repairsDone:[],lockStatus:p.lockStatus||'none',lockResolved:false,firmware:'Сток',firmwareDone:false,rooted:false,techScore:0};
+  state.inventory.push(item);state.orders.push({uid:item.uid,name:item.name,buyPrice:price,seller:item.seller,status:'Забрать у продавца'});state.rep++;maybeEvent('buy');save();render();alert('📦 Сделка оформлена! Теперь забери телефон у продавца.');
+}
+buy=v14Buy;
+
+function openIcloudGame(uid){
+  let x=state.inventory.find(a=>String(a.uid)===String(uid));if(!x||x.lockStatus!=='icloud')return;
+  window.v14IC={uid,round:0,step:0,attempts:0,seq:[]};
+  v14NewIcloudRound();
+  document.getElementById('modalBody').innerHTML=`<div class="icloud-panel"><div class="icloud-lock">🔐</div><h2 style="text-align:center;margin:0">Сброс iCloud</h2><p class="meta" style="text-align:center">Безопасная игровая мини-игра: это вымышленная проверка устройства, а не инструкция по обходу реальной защиты.</p><div class="v14-warning">⚠️ Телефон заблокирован. Пройди 3 раунда проверки, чтобы подготовить его к продаже.</div><div class="v14-step" id="icStep">Раунд 1/3 · Запомни последовательность</div><div class="icloud-progress" style="margin-top:10px"><i id="icProg"></i></div><div id="icTarget" style="text-align:center;font-size:30px;margin:13px 0;letter-spacing:7px">${window.v14IC.seq.join(' ')}</div><div class="icloud-grid">${['🔵','🟣','🟢','🟠'].map(s=>`<button class="icloud-key" onclick="icloudPick('${s}')">${s}</button>`).join('')}</div><div class="meta" id="icAttempts" style="text-align:center;margin-top:9px">Ошибок: 0/3</div><button class="action" style="width:100%;margin-top:10px" onclick="closeModal()">Отмена</button></div>`;
+  document.getElementById('modal').classList.add('open');
+  setTimeout(()=>{let t=document.getElementById('icTarget');if(t)t.textContent=window.v14IC.seq.map(()=>'?').join(' ');},1100);
+}
+function v14NewIcloudRound(){
+  let g=window.v14IC;g.step=0;g.seq=Array.from({length:3+(g.round%2)},(_,i)=>['🔵','🟣','🟢','🟠'][(i+g.round*2+g.uid)%4]);
+  let t=document.getElementById('icTarget');if(t){t.textContent=g.seq.join(' ');setTimeout(()=>{if(document.getElementById('icTarget'))document.getElementById('icTarget').textContent=g.seq.map(()=>'?').join(' ');},850)}
+  let pr=document.getElementById('icProg');if(pr)pr.style.width='0%';
+}
+function icloudPick(sym){
+  let g=window.v14IC;if(!g)return;let expected=g.seq[g.step];
+  if(sym!==expected){g.attempts++;g.step=0;let a=document.getElementById('icAttempts');if(a)a.textContent=`Ошибок: ${g.attempts}/3`;let s=document.getElementById('icStep');if(s)s.textContent='❌ Неверная последовательность — начинай раунд заново';if(g.attempts>=3){closeModal();alert('🔒 Проверка не пройдена. Попробуй ещё раз.');}return;}
+  g.step++;let pr=document.getElementById('icProg');if(pr)pr.style.width=Math.round(g.step/g.seq.length*100)+'%';
+  if(g.step<g.seq.length)return;
+  g.round++;
+  if(g.round<3){let s=document.getElementById('icStep');if(s)s.textContent=`✅ Раунд пройден. Готовься к раунду ${g.round+1}/3`;setTimeout(()=>{v14NewIcloudRound();let ss=document.getElementById('icStep');if(ss)ss.textContent=`Раунд ${g.round+1}/3 · Запомни последовательность`;},450);return;}
+  let x=state.inventory.find(a=>String(a.uid)===String(g.uid));if(!x)return;
+  x.lockStatus='none';x.lockResolved=true;if(x.stateTag==='locked')x.stateTag='good';x.condition=x.stateTag==='ideal'?'Идеальное':x.stateTag==='broken'?'Сломан':'Разблокирован';state.rep+=2;save();closeModal();render();alert('🔓 iCloud сброшен в игре! Телефон теперь можно выставить дороже.');
+}
+
+function v14CreateAd(uid){let x=state.inventory.find(a=>String(a.uid)===String(uid));if(!x)return;if(x.status==='Забрать у продавца')return alert('Сначала забери телефон у продавца.');if(x.lockStatus==='icloud')return alert('🔒 Сначала пройди мини-игру и сбрось iCloud. После этого цена будет выше.');document.getElementById('modalBody').innerHTML=`<h2>📢 Выставить ${x.name}</h2><div class="notice">Рынок сейчас: ${money(v14Value(x))}. Чем лучше состояние, тем выше цена.</div><input id="adPrice" class="field" type="number" value="${Math.round(v14Value(x)*.96)}"><button class="action primary" style="width:100%" onclick="publishAd(${uid})">Опубликовать объявление</button>`;document.getElementById('modal').classList.add('open')}
+createAd=v14CreateAd;
+
+function v14InventoryActions(uid){
+  let x=state.inventory.find(a=>String(a.uid)===String(uid));if(!x)return;let faults=v14FaultList(x);
+  document.getElementById('modalBody').innerHTML=`<h2>📱 ${x.name}</h2><div class="panel">${mini(x)}<div style="margin-top:8px"><b>${x.name}</b><small>Куплен за ${money(x.buyPrice)} · ${x.status}</small></div>${v14Badge(x)}<div class="item"><span>📈 Рынок сейчас</span><b>${money(v14Value(x))}</b></div><div class="item"><span>🛠️ Проблемы</span><b>${faults.length?faults.length+' шт.':'Нет'}</b></div><div style="margin-top:8px"><span class="tech-badge fw">💾 Прошивка: ${x.firmwareDone?'кастомная':'сток'}</span>${x.rooted?'<span class="tech-badge root">🛡️ Root установлен</span>':''}</div>${faults.length?`<div class="v14-faults">${faults.map(f=>v14Faults[f]?.[1]||f).join(' · ')}</div>`:''}</div>${x.lockStatus==='icloud'?`<button class="action primary v14-icloud-button" onclick="openIcloudGame(${uid})">🔓 Сбросить iCloud — мини-игра</button><div class="notice">После прохождения телефон станет дороже на рынке.</div>`:''}<div class="row" style="margin-top:9px"><button class="action" onclick="inspectOwned(${uid})">🔍 Диагностика</button><button class="action" onclick="openCaseMenu(${uid})">🛡️ Чехол</button></div><div class="row" style="margin-top:8px"><button class="action blue" onclick="openFirmwareGame(${uid})">💾 Перепрошить</button><button class="action" onclick="openRootGame(${uid})">🛡️ Root-права</button></div><button class="action primary" style="width:100%;margin-top:8px" onclick="createAd(${uid})">📢 Выставить на продажу</button>${faults.length?`<button class="action" style="width:100%;margin-top:8px" onclick="page('repair',document.querySelectorAll('#nav button')[4]);closeModal()">🔧 Открыть ремонт</button>`:''}`;document.getElementById('modal').classList.add('open');
+}
+inventoryActions=v14InventoryActions;
+
+function v14InspectOwned(uid){
+  let x=state.inventory.find(a=>String(a.uid)===String(uid));if(!x)return;
+  let f=v14FaultList(x);
+  x.faults=f;
+  x.repairsDone=x.repairsDone||[];
+  save();
+  let repairRows=f.map(k=>{
+    let done=x.repairsDone.includes(k);
+    let cost=+(v14Faults[k]?.[2]||1800);
+    return `<div class="item"><span>${v14Faults[k]?.[0]||k}<small>${v14Faults[k]?.[1]||'Проблема'}</small></span>${done?'<span class="good">✓ Исправлено</span>':`<button class="action primary" onclick="repairFault(${uid},'${k}')">🔧 Починить · ${money(cost)}</button>`}</div>`;
+  }).join('');
+  document.getElementById('modalBody').innerHTML=`<h2>🔍 Диагностика — ${x.name}</h2>${v14Badge(x)}<div class="panel">${f.length?repairRows:'<div class="item"><span>Состояние</span><b class="good">✨ Проблем не найдено</b></div>'}</div><div class="notice">💡 Нашёл поломку — можешь сразу нажать «Починить». После ремонта рыночная цена телефона повысится.</div><div class="row" style="margin-top:8px"><button class="action" onclick="closeModal();page('repair',document.querySelectorAll('#nav button')[4]);render()">🛠️ Мастерская</button><button class="action primary" onclick="closeModal();render()">Готово</button></div>`;
+  document.getElementById('modal').classList.add('open');
+}
+inspectOwned=v14InspectOwned;
+
+function v14Listing(p){
+  let price=v14BuyPrice(p),current=v14Value(p);
+  let visual=listingSide==='front'?phoneArt(p):listingSide==='back'?inspectionPhone(p,'back'):'<div class="side-phone" style="--p1:'+p.p1+';--p2:'+p.p2+'"></div>';
+  let pageNo=listingSide==='front'?1:listingSide==='back'?2:3;
+  document.getElementById('modalBody').innerHTML=`<div class="detail-hero"><div class="detail-stage">${visual}<div class="gallery-counter">${pageNo} / 3</div></div><div class="gallery-tabs"><button class="${listingSide==='front'?'active':''}" onclick="listingSide='front';renderListing(phones.find(x=>x.id===${p.id}))">Экран</button><button class="${listingSide==='back'?'active':''}" onclick="listingSide='back';renderListing(phones.find(x=>x.id===${p.id}))">Корпус</button><button class="${listingSide==='side'?'active':''}" onclick="listingSide='side';renderListing(phones.find(x=>x.id===${p.id}))">Торец</button></div><div class="detail-info"><h2 style="margin:0">${p.name}</h2><div class="meta">${p.brand} · ${p.color} · ${p.condition} · ${p.storage||'256 ГБ'} · 👤 ${p.seller}</div>${v14Badge(p)}${p.lockStatus==='icloud'?'<div class="v14-warning">🔒 iCloud заблокирован — после покупки можно пройти игровую проверку и поднять цену.</div>':''}<div class="detail-price">${money(price)}</div><div class="detail-specs"><div class="detail-spec"><span>Рынок</span><b>${money(current)}</b></div><div class="detail-spec"><span>Состояние</span><b>${p.condition}</b></div><div class="detail-spec"><span>Потенциал</span><b class="good">+${money(Math.max(0,current-price))}</b></div><div class="detail-spec"><span>Память</span><b>${p.storage||'256 ГБ'}</b></div></div><div class="detail-actions"><button class="action" onclick="chatSeller(${p.id})">💬 Написать</button><button class="action" onclick="inspect(${p.id})">🔍 Осмотреть</button><button class="action primary" onclick="buy(${p.id})">Купить</button></div></div></div>`;
+  document.getElementById('modal').classList.add('open');
+}
+renderListing=v14Listing;
+
+function v14RenderInventory(){let el=inventoryList;if(!state.inventory.length){el.innerHTML='<div class="empty">📦 Склад пуст.<br>Купи первый телефон на рынке.</div>';return}el.innerHTML=state.inventory.map(x=>{let potential=Math.max(0,Math.round(v14Value(x)*(1.18+state.store*.025)*(1+(x.caseBonus||0))-x.buyPrice));return `<div class="phone-list-card"><div class="list-art">${phoneArt(x,true)}</div><div style="flex:1"><b>${x.name}</b><small>Куплен за ${money(x.buyPrice)} · рынок ${money(v14Value(x))}</small>${v14Badge(x)}<div class="profit-big">Потенциал прибыли +${money(potential)}</div><small>${x.case?'🛡️ '+caseName(x.case):'📱 Без чехла'} · ${x.status}</small></div><button class="action" onclick="inventoryActions(${x.uid})">Открыть</button></div>`}).join('')}
+renderInventory=v14RenderInventory;
+
+
+
+/* v19 unified seller chat: same comfortable full-screen pattern as buyer chat */
+function sellerQuickOffer(id, ratio){
+  const p=phones.find(x=>x.id==id), c=state.chats[id];
+  if(!p||!c)return;
+  const asking=Number(c.asking)||v14BuyPrice(p), v=Math.max(1,Math.round(asking*ratio));
+  document.getElementById('sellerOffer').value=v;
+  offer(id);
+}
+function sellerSay(id,text){
+  const p=phones.find(x=>x.id==id),c=state.chats[id]; if(!p||!c)return;
+  c.msgs.push('Ты: '+text);
+  if(text.includes('заберу')) c.msgs.push('Продавец: Отлично, если быстро — договоримся 👍');
+  else c.msgs.push('Продавец: Да, телефон ещё в продаже. Предлагай цену.');
+  save();chatSeller(id);
+}
+function chatSeller(id){
+  const p=phones.find(x=>x.id==id); if(!p)return;
+  if(!state.chats[id])state.chats[id]={name:p.seller||p.name,msgs:[`Продавец: Привет! ${p.name} отдаю за ${money(v14BuyPrice(p))}.`,`Продавец: Торг есть, но без фантазий 😎`],dealPrice:null,asking:v14BuyPrice(p)};
+  const c=state.chats[id]; state.unread=0; save();
+  const asking=Number(c.asking)||v14BuyPrice(p); c.asking=asking;
+  const initial=(p.seller||'П')[0].toUpperCase();
+  const deal=c.dealPrice?`<div class="deal-card"><b>🤝 Договорились</b><span>Цена: <strong>${money(c.dealPrice)}</strong></span><button class="chat-action primary" style="margin-top:9px" onclick="acceptSellerDeal(${id})">📱 Забрать за ${money(c.dealPrice)}</button></div>`:'';
+  const html=`<div id="v17SellerChat" class="chat-screen seller-chat">
+    <div class="chat-head"><button class="chat-back" onclick="sellerChatClose()">‹</button><div class="chat-avatar">${initial}</div><div class="chat-person"><b>${p.seller||'Продавец'}</b><span>Продавец</span></div></div>
+    <div class="chat-product"><div class="chat-product-art">${mini(p)}</div><div class="chat-product-info"><div class="chat-product-price">Цена продавца: ${money(asking)}</div><div class="chat-product-name">${p.name}, ${p.storage||'256 ГБ'}</div></div></div>
+    <div id="sellerChatMessages" class="chat-messages">${c.msgs.map(sellerBubbleHtml).join('')}${deal}</div>
+    <div class="chat-actions">
+      <button class="chat-action" onclick="sellerSay(${id},'Здравствуйте! Телефон ещё в продаже?')">Здравствуйте! Телефон ещё в продаже?</button>
+      <button class="chat-action primary" onclick="sellerQuickOffer(${id},.90)">Дам ${money(Math.round(asking*.90))} и заберу сегодня</button>
+      <button class="chat-action" onclick="sellerQuickOffer(${id},.94)">Могу дать ${money(Math.round(asking*.94))}</button>
+      <button class="chat-action" onclick="sellerQuickOffer(${id},1)">Хорошо, беру за ${money(asking)}</button>
+      <div class="chat-price-row"><input id="sellerOffer" type="number" inputmode="numeric" placeholder="Своя цена"><button class="chat-action primary" style="width:auto;min-height:54px" onclick="offer(${id})">💰</button></div>
+      <button class="chat-action" onclick="sellerChatClose()">Нет, спасибо</button>
+    </div>
+  </div>`;
+  const old=document.getElementById('v17SellerChat');if(old)old.remove();document.body.insertAdjacentHTML('beforeend',html);document.body.style.overflow='hidden';
+  setTimeout(()=>{const e=document.getElementById('sellerChatMessages');if(e)e.scrollTop=e.scrollHeight},20);
+}
+
+
+/* v20: purely fictional in-game firmware/root mechanics. No real device commands or bypass instructions. */
+function techTarget(uid){return state.inventory.find(a=>String(a.uid)===String(uid));}
+function openFirmwareGame(uid){
+  const x=techTarget(uid); if(!x)return;
+  x.firmware=x.firmware||'Сток';
+  if(x.firmwareDone)return alert('💾 На этом телефоне уже установлена улучшенная прошивка.');
+  window.v20FW={uid,round:0,errors:0,seq:[],step:0};
+  fwNewRound();
+  document.getElementById('modalBody').innerHTML=`<div class="fw-panel"><div class="fw-hud"><span class="fw-chip">💾 Сервисная прошивка</span><b>${x.name}</b></div><div class="soft-note">Это игровая механика: выбери правильные элементы, попади в тайминг и заверши установку. Реальных инструкций по прошивке здесь нет.</div><div class="fw-progress"><i id="fwProg"></i></div><div id="fwStep" class="repair-score">Раунд 1/3 · Запомни последовательность</div><div id="fwTarget" style="text-align:center;font-size:28px;letter-spacing:6px;margin:12px 0">${window.v20FW.seq.join(' ')}</div><div class="fw-grid">${['🔵','🟣','🟢','🟠','⚪','🟡'].map(s=>`<button class="fw-key" onclick="fwPick('${s}')">${s}</button>`).join('')}</div><div id="fwStatus" class="meta" style="text-align:center;margin-top:9px">Ошибок: 0/3</div><button class="action" style="width:100%;margin-top:10px" onclick="closeModal()">Отмена</button></div>`;
+  document.getElementById('modal').classList.add('open');
+  setTimeout(()=>{const t=document.getElementById('fwTarget');if(t)t.textContent=window.v20FW.seq.map(()=>'?').join(' ');},900);
+}
+function fwNewRound(){const g=window.v20FW;g.step=0;const pool=['🔵','🟣','🟢','🟠','⚪','🟡'];g.seq=Array.from({length:3+g.round},(_,i)=>pool[(i*2+g.round+String(g.uid).length)%pool.length]);const t=document.getElementById('fwTarget');if(t){t.textContent=g.seq.join(' ');setTimeout(()=>{if(document.getElementById('fwTarget'))document.getElementById('fwTarget').textContent=g.seq.map(()=>'?').join(' ');},850)}const p=document.getElementById('fwProg');if(p)p.style.width='0%';}
+function fwPick(sym){const g=window.v20FW;if(!g)return;if(sym!==g.seq[g.step]){g.errors++;g.step=0;const st=document.getElementById('fwStatus');if(st)st.textContent=`❌ Ошибка. Ошибок: ${g.errors}/3`;if(g.errors>=3){closeModal();alert('💾 Установка прервана. Попробуй ещё раз.');}return;}g.step++;const p=document.getElementById('fwProg');if(p)p.style.width=Math.round(g.step/g.seq.length*100)+'%';if(g.step<g.seq.length)return;g.round++;if(g.round<3){const st=document.getElementById('fwStep');if(st)st.textContent=`✅ Раунд пройден. Раунд ${g.round+1}/3`;setTimeout(()=>{fwNewRound();const ss=document.getElementById('fwStep');if(ss)ss.textContent=`Раунд ${g.round+1}/3 · Запомни последовательность`;},400);return;}fwFinish();}
+function fwFinish(){const g=window.v20FW,x=techTarget(g.uid);if(!x)return;x.firmwareDone=true;x.firmware='Перекуп PRO OS';x.techScore=(x.techScore||0)+10;save();closeModal();render();alert('💾 Прошивка установлена! Рыночная цена телефона выросла примерно на 3,5%.');}
+function openRootGame(uid){const x=techTarget(uid);if(!x)return;if(x.rooted)return alert('🛡️ Root-права уже установлены.');if(!x.firmwareDone)return alert('💾 Сначала установи игровую кастомную прошивку — без неё Root-миссия недоступна.');window.v20Root={uid,step:0,order:[0,1,2,3].sort(()=>Math.random()-.5),picked:[]};document.getElementById('modalBody').innerHTML=`<div class="fw-panel"><div class="fw-hud"><span class="fw-chip">🛡️ Root Lab</span><b>${x.name}</b></div><div class="soft-note">Фантазийная мини-игра: собери цепочку из 4 узлов в правильном порядке. Это не реальные команды и не инструкция по получению доступа к устройствам.</div><div class="repair-score" id="rootStep">Шаг 1/4 · Найди первый узел</div><div class="root-grid">${['⚙️ Система','🔐 Доступ','🧩 Модуль','⚡ Финиш'].map((t,i)=>`<button class="root-node" id="rootNode${i}" onclick="rootPick(${i})">${t}</button>`).join('')}</div><div id="rootStatus" class="meta" style="text-align:center;margin-top:9px">Ошибок: 0/2</div><button class="action" style="width:100%;margin-top:10px" onclick="closeModal()">Отмена</button></div>`;document.getElementById('modal').classList.add('open');}
+function rootPick(i){const g=window.v20Root;if(!g)return;const btn=document.getElementById('rootNode'+i);if(i!==g.order[g.step]){g.errors=(g.errors||0)+1;if(btn){btn.classList.add('bad');setTimeout(()=>btn.classList.remove('bad'),250)}const st=document.getElementById('rootStatus');if(st)st.textContent=`❌ Неверный узел. Ошибок: ${g.errors}/2`;if(g.errors>=2){closeModal();alert('🛡️ Root-миссия провалена. Попробуй снова.');}return;}g.picked.push(i);if(btn)btn.classList.add('on');g.step++;const st=document.getElementById('rootStep');if(st)st.textContent=g.step<4?`Шаг ${g.step+1}/4 · Продолжай`:'✅ Все узлы собраны';if(g.step===4)setTimeout(rootFinish,350);}
+function rootFinish(){const g=window.v20Root,x=techTarget(g.uid);if(!x)return;x.rooted=true;x.techScore=(x.techScore||0)+12;save();closeModal();render();alert('🛡️ Root-права установлены в игре! Цена телефона выросла примерно на 5,5%.');}
+
+/* Market slot refresh: every successful purchase immediately rolls a different listing into that slot. */
+const v19MarketPool=phones.map(p=>({...p}));
+const v19Sellers=['Дмитрий','Максим','Артём','Илья','Роман','Никита','Сергей','Антон','Влад','Егор','Тимур','Михаил','Олег','Рустам'];
+function v19RandomState(brand){const r=Math.random();if(r<.15)return ['ideal','Идеальное','none'];if(r<.34)return ['broken','Сломан','none'];if(r<.44)return ['locked',brand==='Apple'?'Заблокирован iCloud':'Заблокирован','none'];return ['good','Хорошее','none'];}
+function v19MakeReplacement(old){
+  let candidates=v19MarketPool.filter(t=>t.name!==old.name);
+  let t=candidates[Math.floor(Math.random()*candidates.length)]||v19MarketPool[0];
+  const [stateTag,condition,_lock]=v19RandomState(t.brand);
+  const lockStatus=stateTag==='locked'?(t.brand==='Apple'?'icloud':'activation'):'none';
+  const mult=.92+Math.random()*.16;
+  const mMult=.94+Math.random()*.12;
+  const q={...t};
+  q.price=Math.max(1500,Math.round(t.price*mult/100)*100);
+  q.market=Math.max(q.price+500,Math.round(t.market*mMult/100)*100);
+  q.seller=v19Sellers[Math.floor(Math.random()*v19Sellers.length)];
+  q.stateTag=stateTag;q.condition=condition;q.lockStatus=lockStatus;q.lockResolved=false;
+  q.repairsDone=[];q.faults=null;
+  q.storage=t.storage||([64,128,256,512][Math.floor(Math.random()*4)])+' ГБ';
+  return q;
+}
+function v19RefreshSlot(oldId){
+  const idx=phones.findIndex(p=>p.id===oldId); if(idx<0)return;
+  const old=phones[idx], fresh=v19MakeReplacement(old); fresh.id=oldId; phones[idx]=fresh;
+  // Старый чат относится к старому объявлению. После замены слота он больше не должен всплывать.
+  delete state.chats[String(oldId)]; delete state.chats[oldId];
+  try{localStorage.setItem('perekupMarketSlots',JSON.stringify(phones));}catch(e){}
+}
+try{
+  const savedMarket=JSON.parse(localStorage.getItem('perekupMarketSlots')||'null');
+  if(Array.isArray(savedMarket)&&savedMarket.length===phones.length){savedMarket.forEach((x,i)=>{if(x&&x.name)phones[i]=x;});}
+}catch(e){}
+function v19Buy(id){
+  const p=phones.find(x=>x.id===id);if(!p)return;
+  const price=v14BuyPrice(p);if(state.balance<price)return alert('💸 Не хватает денег.');
+  const bought={...p};
+  state.balance-=price;state.spent+=price;
+  const item={uid:Date.now()+Math.random(),...bought,baseMarket:bought.market,buyCity:state.city,buyPrice:price,status:'Забрать у продавца',faults:null,repairsDone:[],lockStatus:bought.lockStatus||'none',lockResolved:false,firmware:'Сток',firmwareDone:false,rooted:false,techScore:0};
+  state.inventory.push(item);state.orders.push({uid:item.uid,name:item.name,buyPrice:price,seller:item.seller,status:'Забрать у продавца'});state.rep++;
+  v19RefreshSlot(id);maybeEvent('buy');save();render();
+  alert('📦 Куплено! Это объявление обновилось — на его месте уже появился другой телефон.');
+}
+buy=v19Buy;
+
+function acceptSellerDeal(id){
+  const p=phones.find(x=>x.id==id),c=state.chats[id],price=Number(c&&c.dealPrice);if(!p||!c||!price)return;
+  if(state.balance<price)return alert('💸 Не хватает денег на эту цену.');
+  const bought={...p};
+  const item={uid:Date.now()+Math.random(),...bought,baseMarket:bought.market,buyCity:state.city,buyPrice:price,status:'Забрать у продавца',faults:null,repairsDone:[],lockStatus:bought.lockStatus||'none',lockResolved:false,firmware:'Сток',firmwareDone:false,rooted:false,techScore:0};
+  state.balance-=price;state.spent+=price;state.inventory.push(item);state.orders.push({uid:item.uid,name:item.name,buyPrice:price,seller:bought.seller,status:'Забрать у продавца'});state.rep++;
+  c.msgs.push('Ты: Договорились 🤝');c.msgs.push('Продавец: Отлично. Забирай телефон.');c.dealPrice=null;
+  v19RefreshSlot(id);save();sellerChatClose();render();setTimeout(()=>alert('🤝 Сделка оформлена!\nЦена: '+money(price)+'\n📦 Телефон ждёт тебя в разделе «Доставка».\n🔄 Рынок уже подкинул новый вариант.'),30);
+}
+
+/* A more realistic front/back phone hero. The view alternates so the market feels like a real classifieds feed. */
+function phoneArt(p,mini=false){
+  if(mini)return `<div class="miniart" style="background:linear-gradient(145deg,${p.p1},${p.p2})"><div style="position:absolute;inset:3px;border-radius:7px;background:linear-gradient(150deg,${p.p2},#070b10)"></div><span style="position:absolute;right:3px;top:4px;width:10px;height:13px;border-radius:4px;background:#111;border:1px solid #ffffff20"></span></div>`;
+  const back=(Number(p.id)%3===1), apple=p.brand==='Apple', modernApple=/iPhone (1[4-9]|2[0-9])/.test(p.name);
+  const cam=p.cams==='single'?'singlecam':(p.cams==='quad'?'quadcam':'triCam');
+  const glow=apple?'#6aa8ff55':p.brand==='Samsung'?'#8e7dff55':p.brand==='Xiaomi'?'#ffb34755':p.brand==='Google'?'#58d6ff55':p.brand==='Honor'?'#8da8ff55':'#51e4ff55';
+  const camBrand=(p.brand||'').toLowerCase().replace(/[^a-z]+/g,'');
+  const camExtra=apple?'<span class="camera-ring"></span>':'';
+  const notch=modernApple?'<div class="notch" style="width:34px;height:10px;border-radius:0 0 9px 9px"></div>':'<div class="notch"></div>';
+  return `<div class="phoneart ${back?'realistic-back':'realistic-front'} ${cam}" style="--glow:${glow}"><div class="phonebody" style="--p1:${p.p1};--p2:${p.p2}"><div class="phoneedge"></div><div class="sidebtn"></div><div class="phonescreen"><div class="wallpaper"><span class="time">9:41</span><span class="appdot"></span><span class="screenicons"><i></i><i></i><i></i></span></div>${notch}<div class="speaker"></div></div><div class="camblock ${cam} ${camBrand}"><i class="lens l1"></i><i class="lens l2"></i><i class="lens l3"></i><i class="lens l4"></i><i class="flash"></i>${camExtra}</div><div class="logoMark">${apple?'':p.brand.toUpperCase()}</div></div></div>`;
+}
+
+render();
+</script>
+<style id="v21-chat-compact">
+/* v21: compact mobile seller chat */
+@media(max-width:759px){
+  .seller-chat .chat-head{height:64px;flex-basis:64px;padding-left:10px}
+  .seller-chat .chat-back{width:36px;height:36px;font-size:30px}
+  .seller-chat .chat-avatar{width:40px;height:40px;font-size:18px}
+  .seller-chat .chat-person b{font-size:16px}
+  .seller-chat .chat-person span{font-size:11px}
+  .seller-chat .chat-product{margin:7px 10px 2px;padding:7px 9px;gap:9px;border-radius:11px}
+  .seller-chat .chat-product-art{width:60px;height:54px;border-radius:8px}
+  .seller-chat .chat-product-art .phoneart{transform:scale(.31) rotate(-2deg)}
+  .seller-chat .chat-product-price{font-size:16px}
+  .seller-chat .chat-product-name{font-size:12px}
+  .seller-chat .chat-messages{padding:6px 10px 116px}
+  .seller-chat .chat-bubble{max-width:82%;padding:8px 10px;border-radius:14px;margin:5px 0;font-size:14px;line-height:1.22}
+  .seller-chat .chat-time{font-size:9px;margin-top:2px}
+  .seller-chat .chat-actions{padding:8px 10px max(8px,env(safe-area-inset-bottom));gap:5px;background:linear-gradient(180deg,#1a1e2800 0,#1a1e28 14%,#1a1e28 100%)}
+  .seller-chat .chat-action{min-height:42px;border-radius:13px;border-width:1.5px;font-size:14px;padding:8px 11px}
+  .seller-chat .chat-compose{padding:3px 0;background:transparent;border:0;gap:5px}
+  .seller-chat .chat-compose input{height:42px;padding:9px 11px;font-size:14px;border-radius:13px}
+  .seller-chat .chat-compose button{width:44px;height:42px;border-radius:13px}
+  .seller-chat .chat-actions>.chat-action:last-child{display:none}
+  .seller-chat .deal-card{margin:5px 0;padding:8px;border-radius:11px;font-size:12px}
+  .seller-chat .deal-card button{min-height:40px!important;font-size:14px}
+}
+@media(max-height:700px) and (max-width:759px){
+  .seller-chat .chat-head{height:58px;flex-basis:58px}
+  .seller-chat .chat-product{margin-top:5px}
+  .seller-chat .chat-messages{padding-bottom:108px}
+  .seller-chat .chat-action{min-height:38px;font-size:13px}
+  .seller-chat .chat-compose input,.seller-chat .chat-compose button{height:38px}
+}
+</style>
+</body></html>
